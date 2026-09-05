@@ -75,6 +75,7 @@ design-engine/
 - `docs/brands.md` — brand token systems (LiveFree, FYP, neutral) and their fonts.
 - `docs/layout-patterns.md` — reusable layout recipes the generated HTML builds on.
 - `docs/qa.md` — the automated QA methodology (overflow + clip checks).
+- `docs/vision-qa.md` — the perceptual gate: muddy gradients, brand drift, blur, crowding (Phase 4).
 - `docs/pdf-pipeline.md` — how rendering works, font loading, pitfalls, troubleshooting.
 
 ## Scripts
@@ -88,6 +89,11 @@ python3 scripts/generate.py <deck|a4|flyer|carousel> <your.html>
 # alt, and white text over a plain photo. --strict makes warnings fail too.
 python3 scripts/qa.py <your.html>
 python3 scripts/qa.py <your.html> --strict
+
+# Perceptual vision QA (Phase 4): muddy gradients, brand drift, blur, crowding.
+# Heuristics run with no API key; --vision adds an LLM second pair of eyes.
+python3 scripts/vision_qa.py <your.html> --brand livefree
+python3 scripts/vision_qa.py <your.html> --brand livefree --vision --out report.json
 ```
 
 See `python3 scripts/generate.py --help`.
