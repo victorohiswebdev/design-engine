@@ -1,0 +1,22 @@
+# Environment
+venv/
+.env
+*.env
+
+# Generated output (never commit rendered artifacts)
+output/
+examples/*.pdf
+examples/*.png
+
+# Scratch / private working docs
+scratch/
+private/
+_tmp/
+*_test.*
+_test_*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.pyc
+__pycache__/

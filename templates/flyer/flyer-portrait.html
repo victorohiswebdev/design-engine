@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Design Engine — Portrait Flyer Template</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-ink: #1E2A38;
+    --color-panel: #F5F7FA;
+    --color-accent: #2E8B57;
+  }
+  body { margin: 0; background: #ffffff; }
+  .font-title { font-family: 'Montserrat', sans-serif; }
+  .font-body  { font-family: 'Open Sans', sans-serif; }
+  .eyebrow { letter-spacing: 0.22em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<!-- Fixed 4:5 container for WhatsApp/Telegram group drops (display fully).
+     Render: setViewport(1080,1350) + screenshot clip x0 y0 1080x1350.
+     QA: content block (.relative.z-10) height must be <= 1350 or the CTA
+     slides off-frame silently. Compress spacing, never text. -->
+<div class="relative w-[1080px] h-[1350px] overflow-hidden font-body">
+  <div class="absolute inset-0" style="background:linear-gradient(180deg,#ffffff 0%,#F5F7FA 100%);"></div>
+  <!-- accent top bar -->
+  <div class="absolute top-0 left-0 right-0 h-[12px]" style="background:var(--color-accent);"></div>
+
+  <div class="relative z-10 flex flex-col items-center justify-center h-full px-[70px] text-center">
+    <!-- eyebrow -->
+    <div class="flex items-center gap-2 mb-6">
+      <span style="width:10px;height:10px;border-radius:9999px;background:var(--color-accent);"></span>
+      <span class="text-[30px] font-bold font-title text-accent eyebrow">Company or Brand</span>
+    </div>
+
+    <!-- title -->
+    <h1 class="text-[76px] font-black font-title text-ink leading-[1.15] mb-6">One bold line that sells the value</h1>
+
+    <!-- theme line -->
+    <div class="w-[120px] h-[6px] rounded-full mb-8" style="background:var(--color-accent);"></div>
+    <p class="text-[38px] font-semibold text-ink/80 leading-snug max-w-[860px]">A supporting theme line that tells the audience the outcome in a few words.</p>
+
+    <!-- CTA -->
+    <div class="mt-14 px-[48px] py-[22px] rounded-full font-title font-black text-[36px] text-white" style="background:var(--color-accent);">
+      DM us to reserve yours
+    </div>
+    <p class="mt-8 text-[24px] font-medium text-ink/60">Host · Company · City, Country</p>
+  </div>
+</div>
+
+</body>
+</html>

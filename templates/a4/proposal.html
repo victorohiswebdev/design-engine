@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Design Engine — A4 Proposal Template</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-ink: #1E2A38;
+    --color-panel: #F5F7FA;
+    --color-accent: #2E8B57;
+  }
+  /* A4 — continuous flow, 6mm inter-section gap, no forced page breaks.
+     Keep page-break-inside:avoid only on atomic units. */
+  @page { size: A4; margin: 18mm 16mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #ffffff; font-family: 'Open Sans', sans-serif; color: #1E2A38; }
+  .font-title { font-family: 'Montserrat', sans-serif; }
+  .eyebrow { letter-spacing: 0.18em; text-transform: uppercase; }
+  section { margin-bottom: 6mm; page-break-inside: avoid; }
+  h1, h2, h3, p { page-break-after: avoid; }
+</style>
+</head>
+<body class="p-0">
+
+<!-- COVER -->
+<section class="flex flex-col justify-center" style="min-height: 130mm;">
+  <div class="flex items-center gap-2 mb-10">
+    <div style="width:10px;height:10px;border-radius:9999px;background:var(--color-accent);"></div>
+    <span class="text-[12px] font-bold font-title text-accent eyebrow">Company or Brand</span>
+  </div>
+  <h1 class="text-[26px] font-black font-title leading-tight mb-4">Proposal title as a clear, outcome-led sentence</h1>
+  <p class="text-[14px] text-ink/70 max-w-[120mm] leading-relaxed mb-10">One or two lines framing the opportunity and the audience it serves.</p>
+  <div class="text-[12px] text-ink/60 space-y-1">
+    <p><strong class="font-title text-ink">Prepared for:</strong> Recipient Name</p>
+    <p><strong class="font-title text-ink">Prepared by:</strong> Your Name · Your Company</p>
+    <p><strong class="font-title text-ink">Date:</strong> Month 2026</p>
+  </div>
+</section>
+
+<!-- BODY: 1 · the opportunity -->
+<section>
+  <div class="flex items-center gap-2 mb-3">
+    <div style="width:8px;height:8px;border-radius:9999px;background:var(--color-accent);"></div>
+    <h2 class="text-[16px] font-black font-title">The opportunity</h2>
+  </div>
+  <p class="text-[13px] leading-relaxed text-ink/85 mb-3">A paragraph that states the need in concrete terms. Specificity beats adjectives: name the audience, the gap, and the reason it matters now.</p>
+  <p class="text-[13px] leading-relaxed text-ink/85">A second paragraph when the setup needs room. Prefer short paragraphs and a visible narrative over a wall of text.</p>
+</section>
+
+<!-- BODY: 2 · the offer -->
+<section>
+  <div class="flex items-center gap-2 mb-3">
+    <div style="width:8px;height:8px;border-radius:9999px;background:var(--color-accent);"></div>
+    <h2 class="text-[16px] font-black font-title">What we deliver</h2>
+  </div>
+  <ul class="text-[13px] leading-relaxed text-ink/85 space-y-2 list-disc ml-5">
+    <li>Deliverable one, framed around the outcome it produces.</li>
+    <li>Deliverable two, with a measurable result where possible.</li>
+    <li>Deliverable three, and the support that follows it.</li>
+  </ul>
+</section>
+
+<!-- BODY: 3 · timeline & investment -->
+<section>
+  <div class="flex items-center gap-2 mb-3">
+    <div style="width:8px;height:8px;border-radius:9999px;background:var(--color-accent);"></div>
+    <h2 class="text-[16px] font-black font-title">Timeline &amp; investment</h2>
+  </div>
+  <table class="w-full text-[12px] border-collapse mb-3">
+    <thead>
+      <tr>
+        <th class="text-left font-title font-bold pb-2">Phase</th>
+        <th class="text-left font-title font-bold pb-2">Duration</th>
+        <th class="text-left font-title font-bold pb-2">Investment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-t">
+        <td class="py-2 text-ink/85">Scoping and discovery</td>
+        <td class="py-2 text-ink/85">Week 1</td>
+        <td class="py-2 text-ink/85 font-semibold">Included</td>
+      </tr>
+      <tr class="border-t">
+        <td class="py-2 text-ink/85">Design and build</td>
+        <td class="py-2 text-ink/85">Weeks 2–4</td>
+        <td class="py-2 text-ink/85 font-semibold">Full project fee</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- BODY: 4 · next steps -->
+<section>
+  <div class="flex items-center gap-2 mb-3">
+    <div style="width:8px;height:8px;border-radius:9999px;background:var(--color-accent);"></div>
+    <h2 class="text-[16px] font-black font-title">Next steps</h2>
+  </div>
+  <p class="text-[13px] leading-relaxed text-ink/85">Accept this proposal by replying to confirm, and we will start with the scoping call. We are ready to begin as soon as you are.</p>
+</section>
+
+</body>
+</html>

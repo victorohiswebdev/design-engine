@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Design Engine — Carousel Template</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-ink: #1E2A38;
+    --color-panel: #F5F7FA;
+    --color-accent: #2E8B57;
+  }
+  body { margin: 0; background: #ffffff; }
+  .font-title { font-family: 'Montserrat', sans-serif; }
+  .font-body  { font-family: 'Open Sans', sans-serif; }
+  .eyebrow { letter-spacing: 0.22em; text-transform: uppercase; }
+  .frame { width: 1080px; height: 1080px; }
+</style>
+</head>
+<body class="font-body">
+
+<!-- Carousel frames: one .frame per social slide (1080x1080).
+     Each must fit inside the square — run the bounds / content-height
+     check (docs/qa.md) the same way as flyers. -->
+<div class="frame relative overflow-hidden">
+  <div class="absolute top-0 left-0 right-0 h-[12px]" style="background:var(--color-accent);"></div>
+  <div class="relative z-10 flex flex-col items-center justify-center h-full px-[70px] text-center">
+    <div class="flex items-center gap-2 mb-6">
+      <span style="width:10px;height:10px;border-radius:9999px;background:var(--color-accent);"></span>
+      <span class="text-[30px] font-bold font-title text-accent eyebrow">Day 1</span>
+    </div>
+    <h1 class="text-[72px] font-black font-title text-ink leading-[1.15] mb-5">Frame 1 / 5<br>the key idea</h1>
+    <p class="text-[34px] font-semibold text-ink/80 leading-snug max-w-[880px]">A single idea per frame, short and scannable on a phone.</p>
+  </div>
+</div>
+
+</body>
+</html>

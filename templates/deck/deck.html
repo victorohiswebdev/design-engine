@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Design Engine — Deck Template</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-ink: #1E2A38;
+    --color-panel: #F5F7FA;
+    --color-accent: #2E8B57;
+  }
+  /* WARNING: never set background-color on the bare `section` selector.
+     Unlayered author CSS overrides Tailwind's bg-navy and dark slides
+     render white. Light slides inherit body's white. */
+  body { background: #ffffff; margin: 0; }
+  section { width: 1920px; height: 1080px; }
+  .font-title { font-family: 'Montserrat', sans-serif; }
+  .font-body  { font-family: 'Open Sans', sans-serif; }
+  .eyebrow {
+    letter-spacing: 0.22em;
+  }
+  html { font-size: 16px; }
+</style>
+</head>
+<body class="font-body">
+
+<!-- 1 · COVER -->
+<section class="relative flex flex-col items-center justify-center overflow-hidden text-center">
+  <div class="absolute top-16 left-24 w-[300px] h-[6px] bg-accent rounded-full"></div>
+  <div class="px-24 flex flex-col items-center">
+    <div class="flex items-center gap-3 mb-8">
+      <span class="w-3 h-3 rounded-full bg-accent"></span>
+      <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Company or Brand</span>
+    </div>
+    <h1 class="text-[72px] font-black text-ink font-title leading-[1.25] mb-8">
+      A headline conclusion that<br>states the whole idea
+    </h1>
+    <p class="text-[30px] text-ink/70 font-semibold max-w-[1100px]">A supporting line across two or three short words that frames the argument beneath the title.</p>
+    <p class="mt-12 text-[24px] text-ink/55 font-medium">Author Name · Company · Date</p>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 2 · CONTENT: 55/45 split -->
+<section class="relative overflow-hidden">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">02 / 05</div>
+  <div class="flex items-center gap-3 mb-5 px-16 pt-12">
+    <span class="w-3 h-3 rounded-full bg-accent"></span>
+    <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Section label</span>
+  </div>
+  <div class="flex items-center w-full h-[calc(100%-160px)] px-16 gap-12">
+    <div class="w-[55%]">
+      <h1 class="text-[50px] font-black text-ink font-title leading-[1.15] mb-6">Action title that states the finding, not the topic</h1>
+      <div class="space-y-5 mt-8">
+        <p class="text-[30px] font-semibold text-ink/85 flex items-start gap-4">
+          <span class="w-7 h-7 rounded-full bg-accent mt-2 shrink-0"></span>
+          The first reason, written as a complete idea.
+        </p>
+        <p class="text-[30px] font-semibold text-ink/85 flex items-start gap-4">
+          <span class="w-7 h-7 rounded-full bg-accent mt-2 shrink-0"></span>
+          The second reason, and it earns its own line.
+        </p>
+        <p class="text-[30px] font-semibold text-ink/85 flex items-start gap-4">
+          <span class="w-7 h-7 rounded-full bg-accent mt-2 shrink-0"></span>
+          The third becomes the supporting close.
+        </p>
+      </div>
+    </div>
+    <div class="w-[45%]">
+      <div class="bg-panel rounded-[2rem] p-12 flex flex-col items-center justify-center h-full">
+        <div class="text-[96px] font-black text-accent font-title leading-[1.25]">78%</div>
+        <p class="text-[30px] font-semibold text-ink/80 mt-4 text-center">The metric that backs the headline, stated plainly</p>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 3 · CONTENT: 5-card grid -->
+<section class="relative overflow-hidden">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">03 / 05</div>
+  <div class="flex items-center gap-3 mb-5 px-16 pt-12">
+    <span class="w-3 h-3 rounded-full bg-accent"></span>
+    <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Section label</span>
+  </div>
+  <div class="px-16">
+    <h1 class="text-[50px] font-black text-ink font-title leading-[1.15] mb-10">Five quick takes that land the core argument</h1>
+    <div class="grid grid-cols-5 gap-7 h-[500px]">
+      <div class="bg-panel rounded-[2rem] p-8 flex flex-col justify-between">
+        <div class="text-[64px] font-black text-accent font-title leading-[1.25]">01</div>
+        <p class="text-[30px] font-semibold text-ink/85">One idea per card, written tight.</p>
+      </div>
+      <div class="bg-panel rounded-[2rem] p-8 flex flex-col justify-between">
+        <div class="text-[64px] font-black text-accent font-title leading-[1.25]">02</div>
+        <p class="text-[30px] font-semibold text-ink/85">The grid keeps five ideas scannable.</p>
+      </div>
+      <div class="bg-panel rounded-[2rem] p-8 flex flex-col justify-between">
+        <div class="text-[64px] font-black text-accent font-title leading-[1.25]">03</div>
+        <p class="text-[30px] font-semibold text-ink/85">Each card carries a number anchor.</p>
+      </div>
+      <div class="bg-panel rounded-[2rem] p-8 flex flex-col justify-between">
+        <div class="text-[64px] font-black text-accent font-title leading-[1.25]">04</div>
+        <p class="text-[30px] font-semibold text-ink/85">Text stays at 24px or larger.</p>
+      </div>
+      <div class="bg-panel rounded-[2rem] p-8 flex flex-col justify-between">
+        <div class="text-[64px] font-black text-accent font-title leading-[1.25]">05</div>
+        <p class="text-[30px] font-semibold text-ink/85">No filler, every card earns its place.</p>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 4 · CONTENT: two side-by-side cards -->
+<section class="relative overflow-hidden">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">04 / 05</div>
+  <div class="flex items-center gap-3 mb-5 px-16 pt-12">
+    <span class="w-3 h-3 rounded-full bg-accent"></span>
+    <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Section label</span>
+  </div>
+  <div class="px-16">
+    <h1 class="text-[50px] font-black text-ink font-title leading-[1.15] mb-10">Before and after — the change you are proposing</h1>
+    <div class="flex gap-10 h-[480px]">
+      <div class="flex-1 bg-panel rounded-[2.5rem] p-12">
+        <p class="text-[28px] font-bold text-ink/55 uppercase eyebrow font-title mb-6">Before</p>
+        <p class="text-[32px] font-semibold text-ink/80">The problem state, described without the old system doing you favors.</p>
+      </div>
+      <div class="flex-1 bg-accent rounded-[2.5rem] p-12 flex flex-col justify-center">
+        <p class="text-[28px] font-bold text-white uppercase eyebrow font-title mb-6">After</p>
+        <p class="text-[36px] font-bold text-white">The outcome state, stated as a measurable conclusion.</p>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 5 · CLOSING -->
+<section class="relative flex flex-col items-center justify-center overflow-hidden text-center">
+  <div class="absolute top-16 left-24 w-[300px] h-[6px] bg-accent rounded-full"></div>
+  <div class="px-24 flex flex-col items-center">
+    <h1 class="text-[110px] font-black text-ink font-title leading-[1.25] mb-8">Thank you</h1>
+    <p class="text-[32px] font-semibold text-ink/70">A closing line that restates the outcome, and an invitation.</p>
+    <div class="flex items-center gap-4 mt-12">
+      <span class="w-3 h-3 rounded-full bg-accent"></span>
+      <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Company or Brand</span>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+</body>
+</html>
