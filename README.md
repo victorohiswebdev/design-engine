@@ -38,13 +38,17 @@ git clone https://github.com/victorohiswebdev/design-engine && cd design-engine
 python3 -m venv venv && source venv/bin/activate
 pip install 'pyppeteer>=2.0.0'
 
-# 3. Author a template (copy a scaffold from templates/) → my-slide.html
+# 3. Optimize any images you'll use (photos → JPEG/WebP, long edge 1600px, q82)
+pip install Pillow
+python3 scripts/image.py your-photo.jpg --out images/your-photo.jpg
 
-# 4. Render it (deck, flyer, a4, or carousel)
+# 4. Author a template (copy a scaffold from templates/) → my-slide.html
+
+# 5. Render it (deck, flyer, a4, or carousel)
 python3 scripts/generate.py deck my-slide.html
 # → my-slide.pdf
 
-# 5. QA it before shipping
+# 6. QA it before shipping
 python3 scripts/qa.py my-slide.html
 # exit 0 = every element stays inside its slide bounds
 ```
@@ -53,9 +57,9 @@ python3 scripts/qa.py my-slide.html
 
 ```
 design-engine/
-├── docs/          # The rulebook — read this first (esp. formatting-standards.md)
-├── templates/     # Reusable scaffolds: deck / a4 / flyer / carousel
-├── scripts/       # generate.py (CLI) + qa.py (overflow/clip checks)
+├── docs/          # The rulebook — read this first (esp. formatting-standards.md, image-system.md)
+├── templates/     # Reusable scaffolds: deck / a4 / flyer / carousel (+ image treatment library)
+├── scripts/       # generate.py (CLI) + qa.py (overflow/clip) + image.py (asset optimizer)
 ├── examples/      # Curated sample outputs (no client data)
 └── venv/          # Local Python env (gitignored)
 ```
@@ -65,6 +69,8 @@ design-engine/
 - **`docs/formatting-standards.md`** — the 2026 formatting system: action titles,
   4-layer hierarchy, modular type tokens, WCAG color rules, CVD-safe charts,
   data-ink principle. **Read this before building anything.**
+- `docs/image-system.md` — the image pipeline: optimize assets, the treatment
+  library (scrims, duotone, tints, masks), which effects survive into a PDF.
 - `docs/output-types.md` — when to use deck vs a4 vs flyer vs carousel, and each canvas.
 - `docs/brands.md` — brand token systems (LiveFree, FYP, neutral) and their fonts.
 - `docs/layout-patterns.md` — reusable layout recipes the generated HTML builds on.

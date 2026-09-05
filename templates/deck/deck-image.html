@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--
+  DESIGN ENGINE — IMAGE-FORWARD DECK (example)
+  Demonstrates the image treatment library on one optimized asset, so you can
+  see the full-bleed + scrim, duotone, brand tint, framed card, and grid in a
+  real deck. A production deck commits to ONE primary treatment everywhere;
+  this demo intentionally shows the range.
+  Asset: images/sample.jpg (run scripts/image.py on your own source first).
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Design Engine — Image-Forward Deck</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @theme {
+    --color-ink: #0b1120;
+    --color-accent: #F97316;
+    --color-panel: #F5F7FA;
+    --color-teal: #0a6b8a;
+    --color-cyan: #00e5ff;
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1120;
+    --accent: #F97316;
+    --teal: #0a6b8a;
+    --cyan: #00e5ff;
+    --scrim-bot: rgba(11,17,32,.85);
+    --scrim-mid: rgba(11,17,32,.35);
+    --scrim-top: rgba(11,17,32,.55);
+  }
+  body { background: #ffffff; margin: 0; font-family: 'Montserrat', sans-serif; }
+  section { width: 1920px; height: 1080px; }
+  .eyebrow { letter-spacing: 0.22em; text-transform: uppercase; }
+
+  /* full-bleed image + text-safe scrim */
+  .hero { position: absolute; inset: 0; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; }
+  .hero .scrim { position: absolute; inset: 0; background: linear-gradient(to top, var(--scrim-bot), var(--scrim-mid) 55%, var(--scrim-top) 100%); }
+
+  /* duotone: grayscale + sepia, brand-color blend */
+  .duo { position: absolute; inset: 0; }
+  .duo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) sepia(1) contrast(1.05); }
+  .duo .tint { position: absolute; inset: 0; background: var(--accent); mix-blend-mode: color; opacity: .9; }
+
+  /* brand multiply tint (rich, dark) */
+  .mult { position: absolute; inset: 0; background: var(--teal); }
+  .mult .tint { position: absolute; inset: 0; background: var(--cyan); mix-blend-mode: multiply; opacity: .5; }
+  .mult img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+</style>
+</head>
+<body>
+
+<!-- 1 · COVER — full-bleed + scrim -->
+<section class="relative overflow-hidden">
+  <div class="hero"><img src="../../images/sample.jpg" alt="Aerial farmland"><div class="scrim"></div></div>
+  <div class="absolute top-14 left-20 right-20 z-10 flex justify-between items-center">
+    <span class="text-2xl font-bold text-white/80 eyebrow">Company or Brand</span>
+    <span class="text-2xl font-bold text-white/40 font-title tracking-wider">01 / 06</span>
+  </div>
+  <div class="absolute z-10 bottom-0 left-0 right-0 px-20 pb-16">
+    <div class="flex items-center gap-3 mb-5">
+      <span class="w-3 h-3 rounded-full bg-cyan"></span>
+      <span class="text-2xl font-bold text-cyan uppercase eyebrow">01 · Cover</span>
+    </div>
+    <h1 class="text-[80px] font-black text-white leading-[1.2] mb-6 max-w-[1400px]">
+      A feed of one strong image and one clear conclusion
+    </h1>
+    <p class="text-[30px] font-semibold text-white/85 max-w-[1050px]">Supporting line that frames the story beneath the title, short enough to read at a distance.</p>
+    <div class="mt-8 w-[220px] h-[5px] bg-accent"></div>
+  </div>
+</section>
+
+<!-- 2 · DUOTONE — section / pull quote -->
+<section class="relative overflow-hidden">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-white/30 font-title tracking-wider z-10">02 / 06</div>
+  <div class="duo"><img src="../../images/sample.jpg" alt=""><div class="tint"></div></div>
+  <div class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-32">
+    <span class="text-2xl font-bold text-cyan uppercase eyebrow mb-8">02 · Duotone</span>
+    <h2 class="text-[66px] font-black text-white leading-[1.25] max-w-[1300px]">Duotone unifies the imagery and the brand, even across unrelated photos</h2>
+    <div class="mt-10 h-[5px] w-[180px] bg-white/70"></div>
+  </div>
+</section>
+
+<!-- 3 · SPLIT — framed image + metrics -->
+<section class="relative overflow-hidden bg-white">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">03 / 06</div>
+  <div class="flex items-center w-full h-full px-20 gap-16">
+    <div class="w-[50%]">
+      <div class="bg-panel p-10 rounded-[2.5rem] shadow-xl">
+        <img src="../../images/sample.jpg" alt="" style="width:100%;height:400px;object-fit:cover;border-radius:1.25rem;display:block;">
+      </div>
+    </div>
+    <div class="w-[50%]">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 rounded-full bg-accent"></span>
+        <span class="text-2xl font-bold text-accent uppercase eyebrow">03 · Split</span>
+      </div>
+      <h2 class="text-[52px] font-black text-ink leading-[1.15] mb-6">Framed image carries the emotion, metrics carry the proof</h2>
+      <div class="grid grid-cols-2 gap-6 mt-6">
+        <div class="rounded-[2rem] bg-teal p-8">
+          <div class="text-[64px] font-black text-white leading-[1.25]">78%</div>
+          <p class="text-[26px] font-semibold text-white/85 mt-2">The headline number, stated plainly</p>
+        </div>
+        <div class="rounded-[2rem] bg-panel p-8">
+          <div class="text-[64px] font-black text-ink leading-[1.25]">3x</div>
+          <p class="text-[26px] font-semibold text-ink/70 mt-2">A second supporting metric card</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 4 · BRAND TINT (multiply) — full-bleed moment -->
+<section class="relative overflow-hidden">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-white/30 font-title tracking-wider z-10">04 / 06</div>
+  <div class="mult"><img src="../../images/sample.jpg" alt=""><div class="tint"></div></div>
+  <div class="absolute inset-0 z-10 flex flex-col items-start justify-end px-20 pb-16">
+    <span class="text-2xl font-bold text-cyan uppercase eyebrow mb-5">04 · Brand tint</span>
+    <h2 class="text-[66px] font-black text-white leading-[1.2] max-w-[1250px]">A multiply tint pushes the photo into the brand's own color world</h2>
+  </div>
+</section>
+
+<!-- 5 · IMAGE GRID / COLLAGE -->
+<section class="relative overflow-hidden bg-white">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">05 / 06</div>
+  <div class="px-20 pt-16">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="w-3 h-3 rounded-full bg-accent"></span>
+      <span class="text-2xl font-bold text-accent uppercase eyebrow">05 · Grid</span>
+    </div>
+    <h2 class="text-[50px] font-black text-ink leading-[1.15] mb-8">A collage of three shots tells a story one image cannot</h2>
+    <div class="grid grid-cols-3 gap-7 h-[560px]">
+      <img src="../../images/sample.jpg" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:1.5rem;">
+      <img src="../../images/sample.jpg" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:1.5rem;">
+      <img src="../../images/sample.jpg" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:1.5rem;">
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 6 · CLOSING — vignette mask -->
+<section class="relative overflow-hidden">
+  <div class="absolute top-14 left-20 z-10"><span class="text-2xl font-bold text-white/80 eyebrow">Company or Brand</span></div>
+  <div class="hero"><img src="../../images/sample.jpg" alt=""><div class="scrim" style="background:linear-gradient(to top, rgba(11,17,32,.9), rgba(11,17,32,.4) 60%, rgba(11,17,32,.6) 100%);"></div></div>
+  <div class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-32">
+    <h2 class="text-[100px] font-black text-white leading-[1.25] mb-6">Thank you</h2>
+    <p class="text-[32px] font-semibold text-white/85">The closing line restates the outcome and invites the next step.</p>
+    <div class="mt-10 flex items-center gap-3">
+      <span class="w-3 h-3 rounded-full bg-cyan"></span>
+      <span class="text-2xl font-bold text-cyan uppercase eyebrow">Company or Brand</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

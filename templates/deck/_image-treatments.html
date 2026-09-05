@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--
+  DESIGN ENGINE — IMAGE TREATMENT LIBRARY  (reference / copy-from file)
+
+  How to use: copy the <style> block and the markup recipes you need into a
+  deck. This file is a documented reference, not itself a deliverable deck.
+
+  PDF-SAFETY (verified empirically, pyppeteer 2.0.0 → headless Chromium → PDF):
+
+    WORKS in PDF:   gradient scrims, duotone (CSS filter + blend), duotone
+                    (pseudo-element blend), CSS mask-image (vignette/shape),
+                    mix-blend-mode multiply / screen / lighten / darken / color.
+    DOES NOT WORK:  backdrop-filter: blur() (glassmorphism) is DROPPED in the
+                    PDF print path. Do NOT rely on it for a delivered deck.
+                    Fake the "glass" look with a translucent panel + border +
+                    shadow instead (.pseudo-glass), which IS PDF-safe.
+
+  Consistency rule: a real deck commits to ONE primary image treatment and
+  applies it everywhere. Mixed treatments read as assembled, not designed.
+
+  Image contract: run scripts/image.py on every asset first (downscale long
+  edge to ~1600px, q82, photos as JPEG/WebP). Heavy sources inflate PDFs up
+  to ~8x when embedded by Chrome. See docs/image-system.md.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Design Engine — Image Treatment Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --scrim-top: rgba(11,17,32,.55);    /* strong scrim = guaranteed text contrast */
+    --scrim-mid: rgba(11,17,32,.35);
+    --scrim-bot: rgba(11,17,32,.85);
+    --tint-brand: #F97316;
+    --tint-shadow: #0a6b8a;
+    --panel: rgba(255,255,255,.14);
+    --panel-border: rgba(255,255,255,.35);
+    --ink: #0b1120;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+  .swatch { width: 420px; height: 420px; margin: 24px; position: relative; overflow: hidden; border-radius: 18px; display: inline-block; background: #111; }
+  .swatch .cap { position: absolute; z-index: 6; top: 10px; left: 10px; color: #fff; font-size: 12px; background: rgba(0,0,0,.65); padding: 4px 9px; border-radius: 7px; }
+
+  /* ---------- S1 · FULL-BLEED + SCRIM (safe text over any photo) ----------
+     Put the image absolutely inset-0, a scrim on top, text z-3 above. The
+     scrim ratio guarantees WCAG on the text regardless of photo brightness. */
+  .s1 { position: absolute; inset: 0; }
+  .s1 img, .s1 .bg { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .s1 .scrim { position: absolute; inset: 0; background: linear-gradient(to top, var(--scrim-bot), var(--scrim-mid) 55%, var(--scrim-top) 100%); }
+  .s1 .copy { position: absolute; left: 48px; right: 48px; bottom: 44px; color: #fff; z-index: 3; }
+  .s1 .copy h1 { font-size: 64px; font-weight: 900; margin: 0 0 12px; line-height: 1.1; }
+  .s1 .copy p { font-size: 30px; font-weight: 600; margin: 0; opacity: .92; }
+
+  /* ---------- S2 · DUOTONE (option A: CSS filter + color blend) ----------
+     Photo forced grayscale+sepia, then a solid color blended with `color`.
+     A real gradient-map duotone. PDF-safe. */
+  .s2 { position: absolute; inset: 0; }
+  .s2 img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) sepia(1) contrast(1.05); }
+  .s2 .tint { position: absolute; inset: 0; background: var(--tint-brand); mix-blend-mode: color; opacity: .9; }
+
+  /* ---------- S3 · DUOTONE (option B: pseudo-element blend, brand split) --
+     Shadows take --tint-shadow, highlights take --tint-brand. PDF-safe. */
+  .s3 { position: absolute; inset: 0; background: var(--tint-shadow); }
+  .s3::before { content: ''; position: absolute; inset: 0; background: url('placeholder.jpg'); background-size: cover; background-position: center; filter: grayscale(1) contrast(1.1); mix-blend-mode: lighten; }
+  .s3::after { content: ''; position: absolute; inset: 0; background: var(--tint-brand); mix-blend-mode: multiply; opacity: .5; }
+
+  /* ---------- S4 · BRAND TINT (multiply = rich, dark) ---------- */
+  .s4 { position: absolute; inset: 0; }
+  .s4 img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .s4 .tint { position: absolute; inset: 0; background: var(--tint-brand); mix-blend-mode: multiply; opacity: .82; }
+
+  /* ---------- S5 · MASK (CSS mask-image: vignette / arch / any shape) ----
+     PDF-safe. Combine with a tint for styled crops. */
+  .s5 { position: absolute; inset: 0; -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 52%, transparent 78%); mask-image: radial-gradient(circle at 50% 40%, #000 52%, transparent 78%); }
+  .s5 img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ---------- S6 · PSEUDO-GLASS (PDF-safe substitute for glassmorphism) --
+     backdrop-filter: blur() is DROPPED in PDF. Use translucent panel + border
+     + shadow instead. Reads as frosted but with zero print risk. */
+  .s6 { position: absolute; inset: 0; }
+  .s6 img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .s6 .glass { position: absolute; left: 40px; right: 40px; top: 40px; bottom: 40px; background: var(--panel); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid var(--panel-border); border-radius: 20px; box-shadow: 0 12px 40px rgba(0,0,0,.45); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 30px; }
+  .s6.no-blur .glass { backdrop-filter: none; -webkit-backdrop-filter: none; }  /* .no-blur = PDF-safe variant */
+
+  /* ---------- S7 · FRAMED IMAGE CARD (image inside a padded card) ---------- */
+  .s7 { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .s7 .frame { padding: 28px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+  .s7 .frame img { width: 560px; height: 360px; object-fit: cover; border-radius: 14px; display: block; }
+
+  /* ---------- S8 · IMAGE GRID / COLLAGE ---------- */
+  .s8 { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 40px; }
+  .s8 img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+</style>
+</head>
+<body>
+  <div style="padding:14px;color:#fff;font-weight:700;background:#0b1120">Image Treatment Library — copy styles + markup into your deck (see header comments)</div>
+
+  <div class="swatch"><div class="cap">S1 · full-bleed + scrim (text-safe)</div>
+    <div class="s1"><img src="placeholder.jpg" alt=""><div class="scrim"></div>
+      <div class="copy"><h1>Action title over any photo</h1><p>Guaranteed contrast via the scrim.</p></div></div>
+  </div>
+
+  <div class="swatch"><div class="cap">S2 · duotone (filter + color blend)</div>
+    <div class="s2"><img src="placeholder.jpg" alt=""><div class="tint"></div></div>
+  </div>
+
+  <div class="swatch"><div class="cap">S3 · duotone (brand split, pseudo)</div>
+    <div class="s3"></div>
+  </div>
+
+  <div class="swatch"><div class="cap">S4 · brand multiply tint</div>
+    <div class="s4"><img src="placeholder.jpg" alt=""><div class="tint"></div></div>
+  </div>
+
+  <div class="swatch"><div class="cap">S5 · CSS mask (vignette)</div>
+    <div class="s5"><img src="placeholder.jpg" alt=""></div>
+  </div>
+
+  <div class="swatch"><div class="cap">S6 · glass (WARNING: blur drops in PDF)</div>
+    <div class="s6"><img src="placeholder.jpg" alt=""><div class="glass">Glass card</div></div>
+  </div>
+
+  <div class="swatch"><div class="cap">S7 · framed image card</div>
+    <div class="s7"><div class="frame"><img src="placeholder.jpg" alt=""></div></div>
+  </div>
+
+  <div class="swatch"><div class="cap">S8 · image grid / collage</div>
+    <div class="s8"><img src="placeholder.jpg" alt=""><img src="placeholder.jpg" alt=""><img src="placeholder.jpg" alt=""></div>
+  </div>
+</body>
+</html>
