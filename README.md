@@ -34,12 +34,11 @@ entire brand.
 # 1. Clone and enter
 git clone https://github.com/victorohiswebdev/design-engine && cd design-engine
 
-# 2. Install Pyppeteer>=2.0.0 (downloads its own Chromium — no system Chrome needed)
+# 2. Install — Pyppeteer>=2.0.0 downloads its own Chromium, no system Chrome needed
 python3 -m venv venv && source venv/bin/activate
-pip install 'pyppeteer>=2.0.0'
+pip install 'pyppeteer>=2.0.0' Pillow numpy
 
 # 3. Optimize any images you'll use (photos → JPEG/WebP, long edge 1600px, q82)
-pip install Pillow
 python3 scripts/image.py your-photo.jpg --out images/your-photo.jpg
 
 # 4. Author a template (copy a scaffold from templates/) → my-slide.html
@@ -48,18 +47,24 @@ python3 scripts/image.py your-photo.jpg --out images/your-photo.jpg
 python3 scripts/generate.py deck my-slide.html
 # → my-slide.pdf
 
-# 6. QA it before shipping
-python3 scripts/qa.py my-slide.html
-# exit 0 = every element stays inside its slide bounds
+# 6. Geometric QA — no element escapes, no image 404s, no empty slides
+python3 scripts/qa.py my-slide.html --strict
+# exit 0 = clean
+
+# 7. Perceptual QA — muddy gradients, brand drift, blur, crowding (no API needed)
+python3 scripts/vision_qa.py my-slide.html --brand livefree --strict
+
+# 8. With an API key, add an LLM second pair of eyes (Gemini/Claude/OpenAI/any OpenAI-compatible)
+GEMINI_API_KEY=... python3 scripts/vision_qa.py my-slide.html --brand livefree --vision
 ```
 
 ## Repository layout
 
 ```
 design-engine/
-├── docs/          # The rulebook — read this first (esp. formatting-standards.md, image-system.md)
-├── templates/     # Reusable scaffolds: deck / a4 / flyer / carousel (+ image treatment library)
-├── scripts/       # generate.py (CLI) + qa.py (overflow/clip) + image.py (asset optimizer)
+├── docs/          # The rulebook — read this first (esp. formatting-standards.md)
+├── templates/     # Scaffolds: deck / a4 / flyer / carousel + charts/ snippets
+├── scripts/       # generate.py + image.py + qa.py + vision_qa.py
 ├── examples/      # Curated sample outputs (no client data)
 └── venv/          # Local Python env (gitignored)
 ```
@@ -68,15 +73,15 @@ design-engine/
 
 - **`docs/formatting-standards.md`** — the 2026 formatting system: action titles,
   4-layer hierarchy, modular type tokens, WCAG color rules, CVD-safe charts,
-  data-ink principle. **Read this before building anything.**
-- `docs/image-system.md` — the image pipeline: optimize assets, the treatment
-  library (scrims, duotone, tints, masks), which effects survive into a PDF.
+  data-ink principle, depth-without-clutter. **Read this before building anything.**
 - `docs/output-types.md` — when to use deck vs a4 vs flyer vs carousel, and each canvas.
 - `docs/brands.md` — brand token systems (LiveFree, FYP, neutral) and their fonts.
 - `docs/layout-patterns.md` — reusable layout recipes the generated HTML builds on.
+- `docs/image-system.md` — the image pipeline: optimize assets, the treatment
+  library (scrims, duotone, tints, masks), which effects survive into a PDF.
 - `docs/charts.md` — dataviz kit: Okabe-Ito, direct labels, data-ink — bar, line, donut, table-as-visual (Phase 5).
-- `docs/qa.md` — the automated QA methodology (overflow + clip checks).
-- `docs/vision-qa.md` — the perceptual gate: muddy gradients, brand drift, blur, crowding (Phase 4).
+- `docs/qa.md` — geometric QA: overflow, clip, missing images, empty slides.
+- `docs/vision-qa.md` — perceptual QA: muddy gradients, brand drift, blur, crowding (Phase 4, heuristics + optional vision LLM).
 - `docs/pdf-pipeline.md` — how rendering works, font loading, pitfalls, troubleshooting.
 
 ## Scripts
