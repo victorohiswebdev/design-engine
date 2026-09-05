@@ -1,6 +1,6 @@
 # Output Types
 
-Design Engine produces four kinds of output. Each has a fixed canvas, a specific
+Design Engine produces seven kinds of output. Each has a fixed canvas, a specific
 rendering path, and its own QA rules. Pick the type first, then build the HTML.
 
 ## Slides / decks — 1920×1080
@@ -53,12 +53,28 @@ page.screenshot({'path': 'flyer.png', 'clip': {'x':0,'y':0,'width':1080,'height'
 canvas, the CTA gets pushed off-frame (silent in screenshots). Compress
 **spacing** (paddings/gaps/fonts), never the text, to fix overflow.
 
-## Brand carousels — 1080×1080
+## Social — 1080×1080 / 1080×1350 / 1080×1920
+
+**Canvas:** `social` 1080×1080 (1:1 feed), `social-portrait` 1080×1350 (4:5, max real estate), `story` 1080×1920 (9:16).
+Feed posts compete in the scroll — different rules from decks. Full system in `docs/social.md`.
+
+**Use for:** Instagram feed, LinkedIn, X — anywhere the post must win in 1.7s.
+
+**Scaffolds:** `templates/social/square.html`, `portrait.html`, `story.html` — copy, replace copy/colors, render:
+
+```bash
+python3 scripts/generate.py social templates/social/square.html --format png
+python3 scripts/generate.py social-portrait templates/social/portrait.html --format png
+python3 scripts/generate.py story templates/social/story.html --format png
+```
+
+**QA:** same bounds check as flyer/carousel. Design rules (from the Madonna fix): headline 64–120px, body ≥18px, 1:2.5 ratio, outer padding 24–32px, center 60% owns the hook, 60-30-10 color (60 neutral / 30 charcoal / 10 red pop; gold is hairline only on cream), 3-level hierarchy (Hook → sub → CTA), safe zones top 12% / bottom 20%.
+
+## Brand carousels — 1080×1080 (legacy)
 
 **Canvas:** 1080×1080 square.
 
-**Use for:** Instagram / social content series (e.g. a 30-day challenge, a
-multi-slide brand drop).
+**Use for:** multi-slide brand series (legacy). Prefer `templates/social/` for new work; `carousel` remains for backward compat.
 
 **Rendering:** PNG screenshot at 1080×1080, one page per carousel frame.
 
@@ -71,6 +87,9 @@ multi-slide brand drop).
 | Present to an audience | **deck** | 1920×1080 |
 | Formal / printable | **a4** | 210×297 mm |
 | Drop a promo in a group | **flyer** | 1080×1350 |
-| Social series / stories | **carousel** | 1080×1080 |
+| Feed post (default) | **social** | 1080×1080 |
+| Feed post (max height) | **social-portrait** | 1080×1350 |
+| Story / Reel cover | **story** | 1080×1920 |
+| Social series (legacy) | **carousel** | 1080×1080 |
 
 Start from `scripts/generate.py --help` to see each render path.

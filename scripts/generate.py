@@ -34,10 +34,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Canvas per output type. 'deck' emits a per-slide PDF; 'flyer'/'carousel'
 # screenshot a square single-canvas image; 'a4' emits a formatted PDF.
 CANVAS = {
-    'deck':      {'width': 1920, 'height': 1080, 'pdf': '1920px', 'pdf_h': '1080px'},
-    'a4':        {'width': 794,  'height': 1123, 'pdf': '210mm',  'pdf_h': '297mm'},
-    'flyer':     {'width': 1080, 'height': 1350, 'pdf': '1080px', 'pdf_h': '1350px'},
-    'carousel':  {'width': 1080, 'height': 1080, 'pdf': '1080px', 'pdf_h': '1080px'},
+    'deck':            {'width': 1920, 'height': 1080, 'pdf': '1920px', 'pdf_h': '1080px'},
+    'a4':              {'width': 794,  'height': 1123, 'pdf': '210mm',  'pdf_h': '297mm'},
+    'flyer':           {'width': 1080, 'height': 1350, 'pdf': '1080px', 'pdf_h': '1350px'},
+    'carousel':        {'width': 1080, 'height': 1080, 'pdf': '1080px', 'pdf_h': '1080px'},
+    'social':          {'width': 1080, 'height': 1080, 'pdf': '1080px', 'pdf_h': '1080px'},
+    'social-portrait': {'width': 1080, 'height': 1350, 'pdf': '1080px', 'pdf_h': '1350px'},
+    'story':           {'width': 1080, 'height': 1920, 'pdf': '1080px', 'pdf_h': '1920px'},
 }
 
 FONT_WEIGHTS = ["400", "500", "600", "700", "800", "900"]

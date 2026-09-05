@@ -1,7 +1,7 @@
 # Design Engine
 
 A multi-output HTML + Tailwind CSS engine that renders **presentation slides, A4
-documents, one-page flyers, and brand carousels** through headless Chromium
+documents, one-page flyers, brand carousels, and social feed posts** through headless Chromium
 (Pyppeteer). Build each asset once as HTML, render it to a pixel-perfect PDF or
 PNG, and ship.
 
@@ -14,7 +14,9 @@ The successor to the pioneering [`slide-engine`](https://github.com/victorohiswe
 | **Slides / decks** | 1920×1080 per slide | Talks, defenses, masterclasses |
 | **A4 documents** | 210×297 mm | Proposals, cover letters, forms, certificates |
 | **Flyers / one-pagers** | 1080×1350 or 1920×1080 | Group drops on WhatsApp / Telegram |
-| **Brand carousels** | 1080×1080 | Instagram / social content series |
+| **Social feed** | 1080×1080 or 1080×1350 | Instagram / LinkedIn / X — wins in 1.7s |
+| **Stories** | 1080×1920 | Stories / Reel covers |
+| **Brand carousels** | 1080×1080 | Multi-slide brand series (legacy) |
 
 Every output is authored in HTML, styled with Tailwind, and exported to PDF or
 PNG. No design tool, no vector software, no slides app. Just code you can review,
@@ -42,10 +44,12 @@ pip install 'pyppeteer>=2.0.0' Pillow numpy
 python3 scripts/image.py your-photo.jpg --out images/your-photo.jpg
 
 # 4. Author a template (copy a scaffold from templates/) → my-slide.html
+#    Decks: templates/deck/ · A4: templates/a4/ · Flyer: templates/flyer/ · Social: templates/social/ · Charts: templates/charts/
 
-# 5. Render it (deck, flyer, a4, or carousel)
-python3 scripts/generate.py deck my-slide.html
-# → my-slide.pdf
+# 5. Render it (deck, a4, flyer, carousel, social, social-portrait, story)
+python3 scripts/generate.py deck my-slide.html          # → my-slide.pdf
+python3 scripts/generate.py social my-post.html --format png  # → my-post.png (1080x1080)
+python3 scripts/generate.py story my-story.html --format png  # → my-story.png (1080x1920)
 
 # 6. Geometric QA — no element escapes, no image 404s, no empty slides
 python3 scripts/qa.py my-slide.html --strict
@@ -62,8 +66,8 @@ GEMINI_API_KEY=... python3 scripts/vision_qa.py my-slide.html --brand livefree -
 
 ```
 design-engine/
-├── docs/          # The rulebook — read this first (esp. formatting-standards.md)
-├── templates/     # Scaffolds: deck / a4 / flyer / carousel + charts/ snippets
+├── docs/          # The rulebook — read this first (esp. formatting-standards.md, social.md)
+├── templates/     # Scaffolds: deck / a4 / flyer / social / carousel + charts/ snippets
 ├── scripts/       # generate.py + image.py + qa.py + vision_qa.py
 ├── examples/      # Curated sample outputs (no client data)
 └── venv/          # Local Python env (gitignored)
@@ -74,7 +78,8 @@ design-engine/
 - **`docs/formatting-standards.md`** — the 2026 formatting system: action titles,
   4-layer hierarchy, modular type tokens, WCAG color rules, CVD-safe charts,
   data-ink principle, depth-without-clutter. **Read this before building anything.**
-- `docs/output-types.md` — when to use deck vs a4 vs flyer vs carousel, and each canvas.
+- `docs/social.md` — the social feed system: 60-30-10 color, 3-level hierarchy, feed-scale type (64–120px), whitespace 30%, safe zones. **Read before any Instagram/Story.**
+- `docs/output-types.md` — when to use deck vs a4 vs flyer vs social vs story, and each canvas.
 - `docs/brands.md` — brand token systems (LiveFree, FYP, neutral) and their fonts.
 - `docs/layout-patterns.md` — reusable layout recipes the generated HTML builds on.
 - `docs/image-system.md` — the image pipeline: optimize assets, the treatment

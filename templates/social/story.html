@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Social — Story 1080x1920 — Scaffold</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @theme { --color-cream:#FFFBF0; --color-charcoal:#141410; --color-gold:#C9A86A; --color-red:#C1272D; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800;900&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#111}
+  .font-serif{font-family:'Playfair Display',serif}
+  .font-sans{font-family:'Montserrat',sans-serif}
+  /* STORY — 1080x1920 (9:16), safe zone: top 12% and bottom 20% off-limits for UI */
+  section{width:1080px;height:1920px;position:relative;overflow:hidden;background:#FFFBF0}
+</style>
+</head>
+<body>
+<!--
+  STORY SCAFFOLD — 1080×1920 (9:16)
+  Hook must live in center 60% (safe from top 12% profile UI + bottom 20% reply bar).
+  Render: python3 scripts/generate.py story templates/social/story.html --format png
+-->
+<section class="flex flex-col">
+  <div class="absolute top-0 left-0 right-0 h-[6px]" style="background:#C1272D"></div>
+  <div class="absolute inset-[28px] top-[14px] border pointer-events-none" style="border-color:rgba(201,168,106,0.12)"></div>
+
+  <!-- top safe spacer -->
+  <div class="h-[140px] shrink-0"></div>
+
+  <div class="relative z-10 px-[40px] flex items-center justify-between">
+    <span class="font-sans text-[20px] font-bold tracking-[0.32em] uppercase" style="color:#C1272D">BRAND</span>
+    <span class="font-sans text-[16px] font-bold tracking-[0.22em] uppercase px-3 py-1.5 rounded-full" style="background:#C1272D; color:#FFFBF0">01/30</span>
+  </div>
+  <div class="relative z-10 mx-[40px] mt-3 h-[1px]" style="background:linear-gradient(90deg, #C1272D 0%, rgba(201,168,106,0.35) 42%, transparent 100%)"></div>
+
+  <!-- HERO — center safe zone -->
+  <div class="relative z-10 flex-1 flex flex-col items-center justify-center px-[40px] text-center">
+    <p class="font-sans text-[20px] font-extrabold tracking-[0.34em] uppercase" style="color:rgba(20,20,16,0.52)">Eyebrow · Category</p>
+    <h1 class="font-serif font-black leading-[0.82] mt-4" style="color:#141410; font-size:112px; letter-spacing:-0.05em">
+      <span class="block font-serif font-extrabold" style="font-size:44px; letter-spacing:0.12em; color:rgba(20,20,16,0.42); text-transform:uppercase">Hook line one</span>
+      <span class="block">HOOK</span>
+      <span class="block font-serif font-black italic -mt-2" style="color:#C1272D; font-size:110px">here.</span>
+    </h1>
+    <p class="font-sans mt-4 text-center" style="color:rgba(20,20,16,0.62); font-size:24px; line-height:1.40; font-weight:600">Support — keep under 15 words,<br>caption holds the rest.</p>
+    <div class="mt-5 h-[2px] w-[88px]" style="background:#C9A86A"></div>
+    <div class="mt-6 px-6 py-3 rounded-full font-sans text-[20px] font-extrabold" style="background:#C1272D; color:white">Tap →</div>
+  </div>
+
+  <!-- footer CTA — above bottom 20% safe cutoff -->
+  <div class="relative z-10 mx-[40px] mb-[220px] rounded-[1.4rem] px-6 py-4 flex items-center justify-between" style="background:#141410">
+    <div>
+      <p class="font-serif font-black leading-none" style="color:#FFFBF0; font-size:20px">Name · Title</p>
+      <p class="font-sans text-[13px] font-bold tracking-[0.18em] uppercase" style="color:rgba(201,168,106,0.85)">Swipe up</p>
+    </div>
+    <span class="font-sans text-[12px] font-bold tracking-[0.20em] uppercase" style="color:rgba(255,251,240,0.45)">#Hashtag</span>
+  </div>
+</section>
+</body>
+</html>

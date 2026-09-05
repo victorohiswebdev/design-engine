@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Madonna — 1:1 Corrected — Research Fix</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @theme { --color-cream:#FFFBF0; --color-charcoal:#141410; --color-gold:#C9A86A; --color-red:#C1272D; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;0,900;1,700&family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#f5f1e8}
+  .font-serif{font-family:'Playfair Display',serif}
+  .font-sans{font-family:'Montserrat',sans-serif}
+  section{width:1080px;height:1080px;position:relative;overflow:hidden;background:#FFFBF0}
+</style>
+</head>
+<body>
+<section class="flex flex-col">
+  <!-- 10% pop — top red bar owns it instantly -->
+  <div class="absolute top-0 left-0 right-0 h-[6px]" style="background:#C1272D"></div>
+  <div class="absolute inset-[20px] top-[14px] border pointer-events-none" style="border-color:rgba(201,168,106,0.16)"></div>
+
+  <!-- header — 13px, not 9px -->
+  <div class="relative z-10 pt-[22px] px-[24px] flex items-center justify-between">
+    <span class="font-sans text-[20px] font-bold tracking-[0.32em] uppercase" style="color:#C1272D">LiveFree Academy</span>
+    <span class="font-sans text-[17px] font-bold tracking-[0.22em] uppercase px-3 py-1.5 rounded-full" style="background:#C1272D; color:#FFFBF0">Day 02</span>
+  </div>
+  <div class="relative z-10 mx-[24px] mt-2 h-[1px]" style="background:linear-gradient(90deg, #C1272D 0%, rgba(201,168,106,0.35) 42%, transparent 100%)"></div>
+
+  <!-- HERO — fills center 60%, type at feed scale per research -->
+  <div class="relative z-10 flex-1 flex flex-col items-center justify-center px-[24px] text-center">
+    <p class="font-sans text-[18px] font-extrabold tracking-[0.34em] uppercase" style="color:rgba(20,20,16,0.52)">The Opportunity Architect</p>
+    <h1 class="font-serif font-black leading-[0.82] mt-3" style="color:#141410; font-size:194px; letter-spacing:-0.06em">
+      <span class="block font-serif font-extrabold" style="font-size:89px; letter-spacing:0.12em; color:rgba(20,20,16,0.42); text-transform:uppercase">See what</span>
+      <span class="block">others</span>
+      <span class="block font-serif font-black italic -mt-3" style="color:#C1272D; font-size:190px">miss.</span>
+    </h1>
+    <p class="font-sans mt-3 text-center" style="color:rgba(20,20,16,0.62); font-size:29px; line-height:1.35; font-weight:600">you just need the lens to see it —<br>three questions that turn ordinary<br>conversations into pipelines.</p>
+    <div class="mt-3 h-[2px] w-[96px]" style="background:#C9A86A"></div>
+  </div>
+
+  <!-- CTA — one, large, red 10% pop, no 3 tiny pillars -->
+  <div class="relative z-10 mx-[24px] mb-[24px] rounded-[1.4rem] px-6 py-5 flex items-center justify-between" style="background:#141410">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-full flex items-center justify-center font-serif font-black" style="background:#C1272D; color:white; font-size:15px">M</div>
+      <div>
+        <p class="font-serif font-black leading-none" style="color:#FFFBF0; font-size:23px">Madonna Ohanwe</p>
+        <p class="font-sans text-[15px] font-bold tracking-[0.18em] uppercase" style="color:rgba(201,168,106,0.85)">Swipe → 3 Questions</p>
+      </div>
+    </div>
+    <div class="px-5 py-2.5 rounded-full font-sans text-[20px] font-extrabold tracking-wide" style="background:#C1272D; color:white">Save this →</div>
+  </div>
+  <div class="relative z-10 mx-[24px] pb-[18px] flex items-center justify-between">
+    <span class="font-sans text-[14px] font-semibold tracking-[0.18em] uppercase" style="color:rgba(20,20,16,0.32)">Abuja · 5,000 Women</span>
+    <span class="font-sans text-[14px] font-bold tracking-[0.20em] uppercase" style="color:rgba(193,39,45,0.85)">#OpportunitySpotter</span>
+  </div>
+</section>
+</body>
+</html>
