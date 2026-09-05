@@ -74,6 +74,7 @@ design-engine/
 - `docs/output-types.md` — when to use deck vs a4 vs flyer vs carousel, and each canvas.
 - `docs/brands.md` — brand token systems (LiveFree, FYP, neutral) and their fonts.
 - `docs/layout-patterns.md` — reusable layout recipes the generated HTML builds on.
+- `docs/charts.md` — dataviz kit: Okabe-Ito, direct labels, data-ink — bar, line, donut, table-as-visual (Phase 5).
 - `docs/qa.md` — the automated QA methodology (overflow + clip checks).
 - `docs/vision-qa.md` — the perceptual gate: muddy gradients, brand drift, blur, crowding (Phase 4).
 - `docs/pdf-pipeline.md` — how rendering works, font loading, pitfalls, troubleshooting.

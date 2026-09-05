@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!--
+  DESIGN ENGINE — CHART & DATAVIZ DECK (Phase 5)
+  Copy-paste inline SVG charts. No JS, no external lib, PDF-safe.
+  Palette: Okabe-Ito CVD-safe for data + brand ink for text.
+  Direct labels, zero chartjunk, data-ink principle.
+    S1 Cover — chart system intro
+    S2 Bar (horizontal ranked) — the 80% case
+    S3 Line (trend with area) — minimal axis, spark
+    S4 Donut / progress — part-to-whole ≤3 slices only
+    S5 Table-as-visual — styled table that reads as graphic
+    S6 Big-number insight — when a number can be stated, state it
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Design Engine — Charts</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @theme {
+    --color-ink: #1E2A38;
+    --color-accent: #2E8B57;
+    --color-panel: #F5F7FA;
+    --color-teal: #0a6b8a;
+    --color-cyan: #00e5ff;
+    --color-oi-blue: #0072B2;
+    --color-oi-orange: #E69F00;
+    --color-oi-green: #009E73;
+    --color-oi-sky: #56B4E9;
+    --color-oi-verm: #D55E00;
+    --color-oi-purple: #CC79A7;
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { background:#fff; margin:0; }
+  section { width:1920px; height:1080px; }
+  .font-title{font-family:'Montserrat',sans-serif}
+  .font-body{font-family:'Open Sans',sans-serif}
+  .eyebrow{letter-spacing:0.22em; text-transform:uppercase}
+  .shadow-soft{box-shadow:0 1px 2px rgba(30,42,56,.06),0 8px 24px rgba(30,42,56,.08)}
+  /* Okabe-Ito swatches are applied directly via fill= hex, not Tailwind, so SVG exports exact */
+</style>
+</head>
+<body class="font-body">
+
+<!-- 1 · COVER -->
+<section class="relative flex flex-col items-center justify-center overflow-hidden text-center">
+  <div class="absolute top-16 left-24 w-[300px] h-[6px] bg-accent rounded-full"></div>
+  <div class="px-24 flex flex-col items-center">
+    <div class="flex items-center gap-3 mb-8">
+      <span class="w-3 h-3 rounded-full bg-accent"></span>
+      <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Phase 5 · Dataviz</span>
+    </div>
+    <h1 class="text-[68px] font-black text-ink font-title leading-[1.18] mb-6">Charts that state the conclusion —<br>no legend, no chartjunk, no guesswork</h1>
+    <p class="text-[28px] font-semibold text-ink/65 max-w-[1150px] leading-snug">Inline SVG, Okabe-Ito CVD-safe, direct-labeled. Copy a snippet, fill your numbers. What you see in Chromium is what prints.</p>
+    <div class="flex gap-3 mt-10">
+      <span class="px-5 py-2 rounded-full bg-ink text-white text-[16px] font-bold font-title tracking-wide">Okabe-Ito</span>
+      <span class="px-5 py-2 rounded-full bg-panel text-ink/70 text-[16px] font-bold font-title tracking-wide">PDF-safe SVG</span>
+      <span class="px-5 py-2 rounded-full bg-panel text-ink/70 text-[16px] font-bold font-title tracking-wide">Direct labels</span>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 2 · BAR — horizontal ranked (the 80% case) -->
+<section class="relative overflow-hidden">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">02 / 06</div>
+  <div class="flex items-center gap-3 mb-2 px-16 pt-10">
+    <span class="w-3 h-3 rounded-full bg-accent"></span>
+    <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Bar · horizontal ranked</span>
+  </div>
+  <div class="px-16">
+    <h1 class="text-[46px] font-black text-ink font-title leading-[1.15] mb-2">Irrigation cut water use 32% and held yield</h1>
+    <p class="text-[22px] font-semibold text-ink/55 mb-6">Direct-labeled, ranked, one accent bar earns the story. Okabe-Ito blue/orange/green, 4.5:1 on white.</p>
+    <div class="bg-white rounded-[2rem] shadow-soft ring-1 ring-ink/5 p-10">
+      <!-- Inline SVG bar — copy from <svg> to </svg> -->
+      <svg viewBox="0 0 1000 360" role="img" aria-label="Water use by treatment: control 980L, drip 710L, predictive 665L" class="w-full h-[360px]">
+        <!-- row 1: Control -->
+        <text x="0" y="58" font-family="Montserrat" font-size="22" font-weight="700" fill="#1E2A38">Control</text>
+        <text x="0" y="80" font-family="Open Sans" font-size="16" fill="#1E2A38" opacity="0.55">no treatment · n=12</text>
+        <rect x="190" y="38" width="420" height="44" rx="14" fill="#D1D5DB"/>
+        <text x="630" y="68" font-family="Montserrat" font-size="20" font-weight="800" fill="#1E2A38">980 L</text>
+        <!-- row 2: Drip -->
+        <text x="0" y="148" font-family="Montserrat" font-size="22" font-weight="700" fill="#1E2A38">Drip</text>
+        <text x="0" y="170" font-family="Open Sans" font-size="16" fill="#1E2A38" opacity="0.55">scheduled · n=12</text>
+        <rect x="190" y="128" width="304" height="44" rx="14" fill="#E69F00"/>
+        <text x="514" y="158" font-family="Montserrat" font-size="20" font-weight="800" fill="#1E2A38">710 L</text>
+        <!-- row 3: Predictive (accent) -->
+        <text x="0" y="238" font-family="Montserrat" font-size="22" font-weight="700" fill="#0072B2">Predictive*</text>
+        <text x="0" y="260" font-family="Open Sans" font-size="16" fill="#0072B2" opacity="0.7">sensor + RF · n=12</text>
+        <rect x="190" y="218" width="285" height="44" rx="14" fill="#0072B2"/>
+        <text x="495" y="248" font-family="Montserrat" font-size="22" font-weight="900" fill="#0072B2">665 L  ·  −32%</text>
+        <!-- row 4: ± note -->
+        <text x="190" y="310" font-family="Open Sans" font-size="15" fill="#1E2A38" opacity="0.45">* p &lt; 0.01 vs control, ANOVA + Tukey. Error bars omitted for print clarity — full CI in appendix.</text>
+      </svg>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 3 · LINE — trend with minimal axis -->
+<section class="relative overflow-hidden">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">03 / 06</div>
+  <div class="flex items-center gap-3 mb-2 px-16 pt-10">
+    <span class="w-3 h-3 rounded-full bg-accent"></span>
+    <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Line · trend, minimal axis</span>
+  </div>
+  <div class="px-16">
+    <h1 class="text-[46px] font-black text-ink font-title leading-[1.15] mb-2">Yield held as water fell — the gap is the win</h1>
+    <p class="text-[22px] font-semibold text-ink/55 mb-6">One axis, no grid, area under the accredited line is ink = data.</p>
+    <div class="bg-white rounded-[2rem] shadow-soft ring-1 ring-ink/5 p-10">
+      <svg viewBox="0 0 1000 360" role="img" aria-label="Yield stable while water use falls over 6 weeks" class="w-full h-[360px]">
+        <!-- axes -->
+        <line x1="70" y1="300" x2="960" y2="300" stroke="#1E2A38" stroke-opacity="0.12" stroke-width="2"/>
+        <line x1="70" y1="30" x2="70" y2="300" stroke="#1E2A38" stroke-opacity="0.10" stroke-width="2"/>
+        <!-- area under predictive (blue) -->
+        <path d="M 70 180 L 220 170 L 370 150 L 520 138 L 670 132 L 820 128 L 820 300 L 70 300 Z" fill="#0072B2" fill-opacity="0.08"/>
+        <!-- control (gray dashed) -->
+        <polyline points="70,110 220,115 370,120 520,122 670,124 820,128" fill="none" stroke="#9CA3AF" stroke-width="3.5" stroke-dasharray="10 8" stroke-linecap="round"/>
+        <!-- predictive (blue solid) -->
+        <polyline points="70,180 220,170 370,150 520,138 670,132 820,128" fill="none" stroke="#0072B2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- dots predictive -->
+        <circle cx="70" cy="180" r="7" fill="#0072B2" stroke="white" stroke-width="3"/>
+        <circle cx="220" cy="170" r="7" fill="#0072B2" stroke="white" stroke-width="3"/>
+        <circle cx="370" cy="150" r="7" fill="#0072B2" stroke="white" stroke-width="3"/>
+        <circle cx="520" cy="138" r="7" fill="#0072B2" stroke="white" stroke-width="3"/>
+        <circle cx="670" cy="132" r="7" fill="#0072B2" stroke="white" stroke-width="3"/>
+        <circle cx="820" cy="128" r="8.5" fill="#0072B2" stroke="white" stroke-width="3.5"/>
+        <!-- x labels -->
+        <text x="70" y="328" font-family="Open Sans" font-size="15" font-weight="600" fill="#1E2A38" opacity="0.5" text-anchor="middle">Wk 1</text>
+        <text x="220" y="328" font-family="Open Sans" font-size="15" font-weight="600" fill="#1E2A38" opacity="0.5" text-anchor="middle">Wk 2</text>
+        <text x="370" y="328" font-family="Open Sans" font-size="15" font-weight="600" fill="#1E2A38" opacity="0.5" text-anchor="middle">Wk 3</text>
+        <text x="520" y="328" font-family="Open Sans" font-size="15" font-weight="600" fill="#1E2A38" opacity="0.5" text-anchor="middle">Wk 4</text>
+        <text x="670" y="328" font-family="Open Sans" font-size="15" font-weight="600" fill="#1E2A38" opacity="0.5" text-anchor="middle">Wk 5</text>
+        <text x="820" y="328" font-family="Open Sans" font-size="15" font-weight="600" fill="#1E2A38" opacity="0.5" text-anchor="middle">Wk 6</text>
+        <!-- legend (direct, not floating) -->
+        <rect x="72" y="18" width="14" height="14" rx="4" fill="#0072B2"/>
+        <text x="94" y="30" font-family="Montserrat" font-size="15" font-weight="700" fill="#1E2A38">Predictive</text>
+        <line x1="190" y1="25" x2="210" y2="25" stroke="#9CA3AF" stroke-width="3.5" stroke-dasharray="8 6"/>
+        <text x="218" y="30" font-family="Montserrat" font-size="15" font-weight="600" fill="#1E2A38" opacity="0.6">Control</text>
+        <!-- y annotations -->
+        <text x="845" y="136" font-family="Montserrat" font-size="14" font-weight="800" fill="#0072B2">665 L</text>
+        <text x="845" y="120" font-family="Open Sans" font-size="13" font-weight="600" fill="#0072B2" opacity="0.7">final</text>
+      </svg>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 4 · DONUT / PROGRESS — part-to-whole ≤3, otherwise use a bar -->
+<section class="relative overflow-hidden">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">04 / 06</div>
+  <div class="flex items-center gap-3 mb-2 px-16 pt-10">
+    <span class="w-3 h-3 rounded-full bg-accent"></span>
+    <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Donut · part-to-whole ≤3 slices</span>
+  </div>
+  <div class="px-16">
+    <h1 class="text-[46px] font-black text-ink font-title leading-[1.15] mb-2">Donut only when a part begs to be seen — otherwise a bar</h1>
+    <p class="text-[22px] font-semibold text-ink/55 mb-6">≤3 slices, direct-labeled on the arc. More than 3 → use the ranked bar on S2.</p>
+    <div class="flex gap-8">
+      <div class="flex-1 bg-white rounded-[2rem] shadow-soft ring-1 ring-ink/5 p-10 flex items-center gap-10">
+        <svg viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="68% of plots met the irrigation target">
+          <circle cx="110" cy="110" r="78" fill="none" stroke="#F5F7FA" stroke-width="28"/>
+          <circle cx="110" cy="110" r="78" fill="none" stroke="#0072B2" stroke-width="28" stroke-dasharray="333 490" stroke-dashoffset="122.5" stroke-linecap="round" transform="rotate(-90 110 110)"/>
+          <text x="110" y="108" text-anchor="middle" font-family="Montserrat" font-size="42" font-weight="900" fill="#1E2A38">68%</text>
+          <text x="110" y="132" text-anchor="middle" font-family="Open Sans" font-size="13" font-weight="600" fill="#1E2A38" opacity="0.55">of plots</text>
+        </svg>
+        <div>
+          <p class="text-[18px] font-bold text-ink/50 uppercase eyebrow font-title mb-2">Target met</p>
+          <p class="text-[26px] font-bold text-ink leading-tight">68% of predictive plots held<br>soil moisture in band</p>
+          <p class="text-[16px] font-semibold text-ink/50 mt-3">Control: 41% · Drip: 57% · n=36</p>
+        </div>
+      </div>
+      <div class="w-[480px] bg-panel rounded-[2rem] shadow-soft p-10 flex flex-col justify-center">
+        <p class="text-[18px] font-bold text-ink/45 uppercase eyebrow font-title mb-4">Rule</p>
+        <p class="text-[24px] font-bold text-ink leading-snug">If you need a legend to read the chart, redraw it. Direct label on the datum or don't ship it.</p>
+        <div class="mt-6 flex gap-2">
+          <span class="w-3 h-3 rounded-full" style="background:#0072B2"></span>
+          <span class="w-3 h-3 rounded-full" style="background:#E69F00"></span>
+          <span class="w-3 h-3 rounded-full" style="background:#009E73"></span>
+          <span class="text-[14px] font-bold font-title text-ink/50 ml-2">Okabe-Ito — CVD-safe, print-safe, brand-agnostic</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 5 · TABLE-AS-VISUAL -->
+<section class="relative overflow-hidden">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">05 / 06</div>
+  <div class="flex items-center gap-3 mb-2 px-16 pt-10">
+    <span class="w-3 h-3 rounded-full bg-accent"></span>
+    <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Table · as visual, not spreadsheet</span>
+  </div>
+  <div class="px-16">
+    <h1 class="text-[46px] font-black text-ink font-title leading-[1.15] mb-2">When comparison is the point, the table is the chart</h1>
+    <p class="text-[22px] font-semibold text-ink/55 mb-6">One header band, zebra only where it helps the eye track a row, no vertical rules.</p>
+    <div class="bg-white rounded-[2rem] shadow-soft ring-1 ring-ink/5 overflow-hidden">
+      <div class="grid grid-cols-[1.2fr_0.9fr_0.9fr_0.9fr] bg-ink text-white px-10 py-5">
+        <span class="text-[16px] font-bold uppercase eyebrow font-title opacity-90">Treatment</span>
+        <span class="text-[16px] font-bold uppercase eyebrow font-title opacity-90 text-center">Water (L)</span>
+        <span class="text-[16px] font-bold uppercase eyebrow font-title opacity-90 text-center">Yield (kg)</span>
+        <span class="text-[16px] font-bold uppercase eyebrow font-title opacity-90 text-center">WUE</span>
+      </div>
+      <div class="grid grid-cols-[1.2fr_0.9fr_0.9fr_0.9fr] px-10 py-6 items-center border-b border-ink/[0.07]">
+        <span class="text-[22px] font-semibold text-ink/70">Control</span>
+        <span class="text-[22px] font-bold text-ink text-center">980</span>
+        <span class="text-[22px] font-bold text-ink text-center">4.2</span>
+        <span class="text-[22px] font-semibold text-ink/50 text-center">0.43</span>
+      </div>
+      <div class="grid grid-cols-[1.2fr_0.9fr_0.9fr_0.9fr] px-10 py-6 items-center border-b border-ink/[0.07] bg-panel/60">
+        <span class="text-[22px] font-semibold text-ink/70">Drip</span>
+        <span class="text-[22px] font-bold text-ink text-center">710</span>
+        <span class="text-[22px] font-bold text-ink text-center">4.3</span>
+        <span class="text-[22px] font-semibold text-ink/60 text-center">0.61</span>
+      </div>
+      <div class="grid grid-cols-[1.2fr_0.9fr_0.9fr_0.9fr] px-10 py-6 items-center bg-[#E6F0FA]">
+        <span class="flex items-center gap-3 text-[22px] font-black text-ink"><span class="w-2.5 h-2.5 rounded-full" style="background:#0072B2"></span>Predictive</span>
+        <span class="text-[24px] font-black text-oi-blue text-center">665*</span>
+        <span class="text-[24px] font-black text-ink text-center">4.4</span>
+        <span class="text-[24px] font-black text-oi-blue text-center">0.66</span>
+      </div>
+      <div class="px-10 py-4 bg-panel/50 border-t border-ink/[0.06]">
+        <p class="text-[14px] font-semibold text-ink/45">* −32% water, p&lt;0.01. WUE = water-use efficiency (kg/L×100). Bold = accredited best in row.</p>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 6 · BIG-NUMBER INSIGHT + CLOSING -->
+<section class="relative flex flex-col justify-center overflow-hidden">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">06 / 06</div>
+  <div class="flex items-center gap-3 mb-2 px-16 pt-4">
+    <span class="w-3 h-3 rounded-full bg-accent"></span>
+    <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Insight · when a number is enough</span>
+  </div>
+  <div class="flex gap-12 px-16 h-[680px]">
+    <div class="flex-1 bg-white rounded-[2.5rem] shadow-soft ring-1 ring-ink/5 p-12 flex flex-col justify-between">
+      <p class="text-[20px] font-bold text-ink/40 uppercase eyebrow font-title">The line that replaces a chart</p>
+      <div>
+        <div class="text-[96px] font-black text-ink font-title leading-[1.25]">4.94</div>
+        <p class="text-[24px] font-bold text-ink/70 mt-2">is not a chart — it is the conclusion the chart was trying to earn.</p>
+      </div>
+      <p class="text-[18px] font-semibold text-ink/45 leading-snug">If the insight fits in one number, don't build a chart to bury it. State it at 96px and move on.</p>
+    </div>
+    <div class="w-[38%] flex flex-col gap-8">
+      <div class="bg-ink rounded-[2rem] p-10 text-white">
+        <p class="text-[16px] font-bold uppercase eyebrow font-title opacity-60 mb-3">Snippet</p>
+        <code class="text-[14px] font-mono leading-relaxed opacity-90">&lt;svg viewBox="0 0 1000 360"&gt;<br>&nbsp;&nbsp;&lt;rect x="190" y="218" width="285"<br>&nbsp;&nbsp;&nbsp;&nbsp;rx="14" fill="#0072B2"/&gt;<br>&lt;/svg&gt;</code>
+        <p class="text-[15px] font-semibold opacity-60 mt-4">Inline SVG — copy, fill numbers, ship. No JS.</p>
+      </div>
+      <div class="bg-panel rounded-[2rem] p-8 shadow-soft ring-1 ring-ink/5">
+        <p class="text-[15px] font-bold text-ink/50 uppercase eyebrow font-title mb-3">Okabe-Ito (CVD-safe)</p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="px-3 py-1.5 rounded-full text-white text-[13px] font-bold font-title" style="background:#0072B2">#0072B2</span>
+          <span class="px-3 py-1.5 rounded-full text-white text-[13px] font-bold font-title" style="background:#E69F00">#E69F00</span>
+          <span class="px-3 py-1.5 rounded-full text-white text-[13px] font-bold font-title" style="background:#009E73">#009E73</span>
+          <span class="px-3 py-1.5 rounded-full text-white text-[13px] font-bold font-title" style="background:#CC79A7">#CC79A7</span>
+          <span class="px-3 py-1.5 rounded-full text-white text-[13px] font-bold font-title" style="background:#D55E00">#D55E00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+</body>
+</html>
