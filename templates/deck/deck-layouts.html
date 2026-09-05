@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--
+  DESIGN ENGINE — LAYOUT & DEPTH SHOWCASE DECK (Phase 3)
+  Demonstrates the 2026 depth-and-variety patterns, all inside the formatting
+  standards (action titles, banner type, ≥1.5:1 hierarchy, WCAG color):
+    S1  Cover            — editorial asymmetric composition, soft two-tone depth
+    S2  Bento grid       — modular cells, one hero metric, soft-shadow cards
+    S3  Anchor / divider — dark navy pacing slide, huge single statement
+    S4  Single number    — one massive digit as the hero, minimal support
+    S5  Pull quote       — giant editorial quote with attribution rule
+    S6  Closing          — clean thank-you with soft depth
+  Depth rule: soft shadows + subtle two-tone panels ONLY (no heavy gradients,
+  no glass blur in PDF). One primary treatment per deck.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Design Engine — Layout & Depth Deck</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @theme {
+    --color-ink: #1E2A38;
+    --color-accent: #2E8B57;
+    --color-panel: #F5F7FA;
+    --color-teal: #0a6b8a;
+    --color-cyan: #00e5ff;
+    --color-naevy: #0b1120;
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1E2A38; --accent: #2E8B57; --panel: #F5F7FA; --teal: #0a6b8a; --cyan: #00e5ff; --naevy: #0b1120; }
+  body { background: #ffffff; margin: 0; }
+  section { width: 1920px; height: 1080px; }
+  .font-title { font-family: 'Montserrat', sans-serif; }
+  .font-body  { font-family: 'Open Sans', sans-serif; }
+  .eyebrow { letter-spacing: 0.22em; text-transform: uppercase; }
+  /* --- depth utilities (subtle, layered; PDF-safe) --- */
+  .shadow-soft { box-shadow: 0 1px 2px rgba(11,17,32,.06), 0 8px 24px rgba(11,17,32,.08); }
+  .shadow-lift { box-shadow: 0 2px 4px rgba(11,17,32,.06), 0 14px 34px rgba(11,17,32,.13); }
+  html { font-size: 16px; }
+</style>
+</head>
+<body class="font-body">
+
+<!-- 1 · COVER — editorial asymmetric + soft two-tone -->
+<section class="relative flex items-center overflow-hidden bg-white">
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+  <div class="absolute top-0 right-0 h-full w-[34%]" style="background:linear-gradient(180deg,#f0f4f8 0%,#e7eef5 100%)"></div>
+  <div class="relative z-10 w-[58%] px-24 py-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-3 h-3 rounded-full bg-accent"></span>
+      <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">S1 · Cover</span>
+    </div>
+    <h1 class="text-[76px] font-black text-ink font-title leading-[1.18] mb-7">
+      Editorial asymmetry that lets the headline own the slide
+    </h1>
+    <p class="text-[30px] font-semibold text-ink/70 leading-snug max-w-[850px]">A wide margin, one dominant column, and a quiet second zone. Nothing competes with the message.</p>
+    <div class="mt-9 h-[6px] w-[180px] rounded-full bg-accent"></div>
+  </div>
+  <div class="relative z-10 w-[42%] pr-24">
+    <div class="rounded-[2.5rem] bg-white shadow-lift p-10 ring-1 ring-ink/5">
+      <p class="text-[22px] font-bold text-ink/45 uppercase eyebrow font-title mb-4">Pacing anchor</p>
+      <div class="text-[110px] font-black text-accent font-title leading-[1.2]">01</div>
+      <p class="text-[26px] font-semibold text-ink/70 mt-3">A quiet supporting zone carries one large element on white.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · BENTO GRID -->
+<section class="relative overflow-hidden bg-white">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">02 / 06</div>
+  <div class="px-20 pt-12">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="w-3 h-3 rounded-full bg-accent"></span>
+      <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">S2 · Bento grid</span>
+    </div>
+    <h2 class="text-[50px] font-black text-ink font-title leading-[1.15] mb-8">Modular cells make mixed content read as one system</h2>
+    <div class="grid grid-cols-4 grid-rows-2 gap-6 h-[640px]">
+      <div class="col-span-2 row-span-2 bg-accent rounded-[2rem] p-12 flex flex-col justify-between shadow-lift">
+        <p class="text-[26px] font-bold text-white/80 uppercase eyebrow font-title">Hero metric</p>
+        <div>
+          <div class="text-[120px] font-black text-white font-title leading-[1.2]">4.94</div>
+          <p class="text-[30px] font-semibold text-white/90 mt-3">The single number that carries the slide.</p>
+        </div>
+      </div>
+      <div class="col-span-1 row-span-1 bg-panel rounded-[2rem] p-8 flex flex-col justify-between shadow-soft">
+        <p class="text-[40px] font-black text-teal font-title leading-[1.3]">2x</p>
+        <p class="text-[24px] font-semibold text-ink/70">A supporting stat, stated as a claim.</p>
+      </div>
+      <div class="col-span-1 row-span-1 bg-white rounded-[2rem] p-8 ring-1 ring-ink/5 flex flex-col justify-between shadow-soft">
+        <p class="text-[14px] font-bold text-ink/35 uppercase eyebrow font-title leading-tight">Label</p>
+        <p class="text-[30px] font-bold text-ink">+18%</p>
+      </div>
+      <div class="col-span-1 row-span-1 bg-teal rounded-[2rem] p-8 flex flex-col justify-between shadow-soft">
+        <p class="text-[14px] font-bold text-white/70 uppercase eyebrow font-title leading-tight">Quick take</p>
+        <p class="text-[26px] font-bold text-white leading-tight">One line that earns its cell.</p>
+      </div>
+      <div class="col-span-1 row-span-1 bg-panel rounded-[2rem] p-8 flex flex-col justify-between shadow-soft">
+        <p class="text-[14px] font-bold text-ink/35 uppercase eyebrow font-title leading-tight">Insight</p>
+        <p class="text-[26px] font-bold text-ink/80 leading-tight">Grid keeps it scannable.</p>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 3 · ANCHOR / DIVIDER (dark) -->
+<section class="relative overflow-hidden" style="background:#0b1120">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-white/25 font-title tracking-wider z-10">03 / 06</div>
+  <div class="absolute inset-0 opacity-[0.07]" style="background-image:radial-gradient(circle, #fff 1px, transparent 1px); background-size:44px 44px;"></div>
+  <div class="absolute top-0 left-0 right-0 h-[5px] bg-accent"></div>
+  <div class="relative z-10 flex flex-col items-center justify-center text-center px-32">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-3 h-3 rounded-full bg-cyan"></span>
+      <span class="text-2xl font-bold text-cyan uppercase eyebrow font-title">Section divider</span>
+    </div>
+    <h2 class="text-[64px] font-black text-white font-title leading-[1.25]">A pacing slide that stops the room between sections</h2>
+    <div class="mt-10 flex items-center gap-4">
+      <span class="w-[140px] h-[5px] rounded-full bg-white/70"></span>
+      <span class="text-[46px] font-black text-white font-title leading-[1.15]">03</span>
+      <span class="w-[140px] h-[5px] rounded-full bg-white/70"></span>
+    </div>
+    <p class="mt-8 text-[26px] font-semibold text-white/70">Give the audience a breath before the next argument lands.</p>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-teal"></div>
+</section>
+
+<!-- 4 · SINGLE NUMBER -->
+<section class="relative flex flex-col items-center justify-center overflow-hidden bg-white text-center">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">04 / 06</div>
+  <div class="absolute top-0 left-0 right-0 h-[5px] bg-accent"></div>
+  <span class="text-2xl font-bold text-accent uppercase eyebrow font-title mb-6">S4 · Single number</span>
+  <div class="text-[240px] font-black text-ink font-title leading-[1.3]">78</div>
+  <p class="text-[26px] font-bold text-ink/45 uppercase eyebrow font-title mt-2 mb-4">Percent</p>
+  <p class="text-[32px] font-semibold text-ink/70 max-w-[900px]">One digit as the hero, a label, one line of context. Breathe.</p>
+</section>
+
+<!-- 5 · PULL QUOTE -->
+<section class="relative flex flex-col justify-center overflow-hidden bg-white">
+  <div class="absolute top-10 right-14 text-2xl font-bold text-ink/25 font-title tracking-wider z-10">05 / 06</div>
+  <div class="absolute left-20 top-1/2 -translate-y-1/2 w-[5px] h-[46%] bg-accent rounded-full"></div>
+  <div class="px-32">
+    <div class="text-[220px] font-black text-accent/25 font-title leading-[1.25] -mb-14">“</div>
+    <h2 class="text-[64px] font-black text-ink font-title leading-[1.25] max-w-[1500px]">A quote reads as a conclusion when it says nothing the slide can't say faster</h2>
+    <div class="flex items-center gap-6 mt-10">
+      <div class="h-[5px] w-[120px] bg-accent rounded-full"></div>
+      <p class="text-[28px] font-bold text-ink/60 font-title">Victor Ohis</p>
+      <p class="text-[24px] font-semibold text-ink/45">· Attribution, role</p>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-[5px] bg-accent"></div>
+</section>
+
+<!-- 6 · CLOSING -->
+<section class="relative flex flex-col items-center justify-center overflow-hidden bg-white text-center">
+  <div class="absolute inset-0 bg-panel/40" style="background:linear-gradient(180deg,#ffffff 0%,#eef4f9 100%)"></div>
+  <div class="relative z-10 flex flex-col items-center px-24">
+    <h2 class="text-[88px] font-black text-ink font-title leading-[1.2] mb-6">Thank you</h2>
+    <p class="text-[30px] font-semibold text-ink/70 mb-10">A closing line that restates the outcome and invites the next step.</p>
+    <div class="flex items-center gap-3">
+      <span class="w-3 h-3 rounded-full bg-accent"></span>
+      <span class="text-2xl font-bold text-accent uppercase eyebrow font-title">Company or Brand</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

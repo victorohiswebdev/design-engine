@@ -85,3 +85,41 @@ These rules carry across every pattern:
 - Dark slides: never set `background-color` on the bare `section` selector
   (an unlayered `section { background:#fff }` would override `bg-navy` — see
   `pdf-pipeline.md`). Light slides inherit `body { background:#fff }`.
+
+## 2026 depth & variety patterns (Phase 3)
+
+Adds variety and depth without breaking the formatting rules. The complete
+showcase is `templates/deck/deck-layouts.html` — all six slides pass the QA
+gate at 0 fails / 0 warns (verified).
+
+**Bento grid** — modular cells of mixed sizes read as one system. One large
+hero cell (a metric) with supporting cells. CSS:
+`grid grid-cols-4 grid-rows-2 gap-6`, hero = `col-span-2 row-span-2`, rounded
+`[2rem]`. Use an accent-filled hero + panel/white cells + one teal cell, all
+with `shadow-soft`.
+
+**Editorial / asymmetric** — one dominant headline column (≤58% width) + a
+quiet second zone (metric or panel) on the far side, wide margins, a thin
+accent rule. Reads as print/magazine, not a report form.
+
+**Anchor / divider (dark)** — a navy pacing slide that stops the room between
+sections: full-screen dark, dot-grid `radial-gradient` at ~7% white opacity,
+centered statement, a `NN` number between two rules, cyan eyebrow, white text.
+Set the dark background on an inner element or inline style, NEVER on the bare
+`section` selector (cascade-layers pitfall).
+
+**Single-number pacing** — one massive numeral as the hero (180–240px), a small
+label, one context line, generous white space. Isolation = impact.
+
+**Pull quote** — a vertical accent bar on the left, a large opening quote glyph,
+a big quote line, and an attribution with a horizontal rule.
+
+**Depth utilities (PDF-safe)** — subtle, layered soft shadows only:
+```css
+.shadow-soft { box-shadow: 0 1px 2px rgba(11,17,32,.06), 0 8px 24px rgba(11,17,32,.08); }
+.shadow-lift { box-shadow: 0 2px 4px rgba(11,17,32,.06), 0 14px 34px rgba(11,17,32,.13); }
+```
+Depth-without-clutter rules: soft shadows and two-tone panels only; no heavy
+gradients; `backdrop-filter` glass drops in the PDF (see image-system); one
+primary depth treatment per deck. Big display numerals use generous leading
+(`leading-[1.2]`–`[1.3]`) so the QA clip check stays clean.

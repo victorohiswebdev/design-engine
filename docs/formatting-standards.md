@@ -77,7 +77,19 @@ anything that doesn't carry information: drop shadows, decorative borders,
 fake depth, redundant axes. When a number can be stated, state it — a clean
 metric card beats a decorated chart.
 
-## 7. LiveFree palette & brand fonts
+## 7. Depth without clutter
+
+Depth supports the message, never competes with it. Prefer **subtle layered
+soft shadows**, two-tone panels, and one deliberate oversized element (a hero
+metric, a single number, a pull quote) for variety. Avoid heavy gradients,
+drop-shadow spam, and effects that don't carry information. **`backdrop-filter`
+glass is not PDF-safe** (dropped in the print path — see image-system); if you
+want the frosted look, use a translucent panel with a border and shadow. Apply
+one primary depth treatment per deck and keep it consistent, exactly like the
+image-treatment consistency rule. Deep displays need generous leading
+(`leading-[1.2]`–`[1.3]` on 180–240px numerals) to render cleanly.
+
+## 8. LiveFree palette & brand fonts
 
 See **`docs/brands.md`** for the token systems. The headline rule that matters
 most: **brand decks use that brand's font for body AND headings.** A "default"
