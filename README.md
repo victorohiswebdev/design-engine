@@ -83,8 +83,11 @@ design-engine/
 # Render any HTML template to PDF (or PNG via --format png)
 python3 scripts/generate.py <deck|a4|flyer|carousel> <your.html>
 
-# Automated layout QA: exit 0 = clean, exit 1 = elements escape their slide
+# Automated layout + design QA: 0 = clean, 1 = fail.
+# Flags overflow, broken/missing images, empty slides; warns on clip, missing
+# alt, and white text over a plain photo. --strict makes warnings fail too.
 python3 scripts/qa.py <your.html>
+python3 scripts/qa.py <your.html> --strict
 ```
 
 See `python3 scripts/generate.py --help`.
