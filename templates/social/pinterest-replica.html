@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pinterest replica — NEVER GIVE UP / NOTHING IS IMPOSSIBLE</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Anton&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  /* ------------------------------------------------------------------
+     Reconstruction of the reference design, built from measurements taken
+     off the source with scripts/ref_compare.py rather than by eye.
+
+     Reference is 626x630; normalised to 1080x1080, so every geometry value
+     below is "percent of canvas" from the reference signature x 10.8.
+
+     Palette measured off the source:
+       background  #000000   (72% of pixels)
+       "white"     #E6E6E6   NOT #FFFFFF -- the source is a warm off-white
+       yellow      #FFCF01   block and POSSIBLE are the same yellow
+       ghost       rgba(230,230,230,0.30)   (measured #4B4B4B on black)
+       rules       #4E4E4E
+       small text  #5E5E5E
+
+     MEASURED FONT METRICS (from my own render, not assumed):
+       Anton      ink-height / font-size = 0.865   (NOT the 0.73 I first assumed)
+       cap offset above the box top      = 0.059 em
+       Montserrat cap offset             = 0.146 em
+     ------------------------------------------------------------------ */
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1080px}
+  body{background:#000}
+  section{position:relative;width:1080px;height:1080px;overflow:hidden;background:#000}
+
+  :root{
+    --cream:#E6E6E6;
+    --yellow:#FFCF01;
+    --ghost:rgba(230,230,230,0.30);
+    --rule:#4E4E4E;
+    --muted:#5E5E5E;
+
+    /* Horizontal compression. The stock faces are wider than the reference at the
+       required cap height, so each run is squeezed to the measured ink width. */
+    --sx-no:0.988;
+    --sx-thing:1.006;
+    --sx-imp:0.954;
+
+    /* Vertical text-box tops: target cap top minus the face's cap offset.
+       Anton cap offset = 0.059 em, Montserrat = 0.146 em. */
+    --top-script:235.9px;
+    --top-thing:376.5px;
+    --top-ghost:315.3px;   /* pre-scale top; scaleY grows it about the box top */
+    --top-imp:609px;
+    --top-no:377.6px;
+  }
+
+  /* Satisfy is proportionally taller than the reference script, so it is set
+     smaller and stretched horizontally: height matched first, width restored. */
+  .script{
+    position:absolute;left:302px;top:var(--top-script);width:476px;
+    font-family:'Satisfy',cursive;font-size:80.5px;line-height:1;
+    color:var(--cream);text-align:center;white-space:nowrap;
+    transform:scaleX(1.072);transform-origin:50% 0;
+  }
+  .uline{
+    position:absolute;left:369px;top:308px;width:290px;height:8px;
+    background:var(--cream);border-radius:4px;transform:rotate(-0.45deg);
+  }
+  .block{position:absolute;left:230px;top:332px;width:220px;height:275px;background:var(--yellow)}
+
+  .wrap-no{position:absolute;left:247.5px;top:0;transform:scaleX(var(--sx-no));transform-origin:0 0}
+  .no{position:absolute;left:0;top:var(--top-no);font-family:'Anton',sans-serif;
+      font-size:190px;line-height:1;color:#000;letter-spacing:0}
+
+  .wrap-thing{position:absolute;left:453.3px;top:0;transform:scaleX(var(--sx-thing));transform-origin:0 0}
+  /* Ghost: same face and size as the solid, stretched vertically about its own top,
+     so it stays concentric with the solid cap and peeks above AND below it -- which
+     is what the reference does (outline visible top and bottom, never left/right). */
+  .ghost{
+    position:absolute;left:0;top:var(--top-ghost);
+    font-family:'Anton',sans-serif;font-size:190px;line-height:1;
+    color:transparent;-webkit-text-stroke:3px var(--ghost);
+    transform:scaleY(1.646);transform-origin:0 0;
+  }
+  .solid{
+    position:absolute;left:0;top:var(--top-thing);
+    font-family:'Anton',sans-serif;font-size:190px;line-height:1;color:var(--cream);
+  }
+
+  .wrap-imp{position:absolute;left:224px;top:0;transform:scaleX(var(--sx-imp));transform-origin:0 0}
+  .imp{position:absolute;left:0;top:var(--top-imp);font-family:'Montserrat',sans-serif;
+       font-weight:800;font-size:102px;line-height:1;white-space:nowrap;letter-spacing:-0.01em}
+  .imp .im{color:var(--cream)}
+  .imp .pos{color:var(--yellow)}
+
+  /* Leader rows. Row top = band top minus the label's cap offset, so the rule sits
+     on the cap's optical centre and the band measures exactly cap-height tall. */
+  .row{position:absolute;left:0;width:1080px}
+  .row .line{position:absolute;left:227px;top:10.4px;height:5px;background:var(--rule)}
+  .row .lab{
+    position:absolute;left:227px;top:0;width:619px;text-align:right;
+    font-family:'Montserrat',sans-serif;font-weight:700;font-size:26px;line-height:1;
+    color:var(--muted);letter-spacing:0.005em;white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+<section>
+  <div class="script">Never Give Up</div>
+  <div class="uline"></div>
+
+  <div class="block"></div>
+  <div class="wrap-no"><div class="no">NO</div></div>
+
+  <div class="wrap-thing">
+    <div class="ghost">THING</div>
+    <div class="solid">THING</div>
+  </div>
+
+  <div class="wrap-imp"><div class="imp"><span class="im">IM</span><span class="pos">POSSIBLE</span></div></div>
+
+  <div class="row" style="top:718.7px"><div class="line" style="width:484px"></div><div class="lab">YOU ARE</div></div>
+  <div class="row" style="top:751.1px"><div class="line" style="width:460px"></div><div class="lab">STRONGER</div></div>
+  <div class="row" style="top:783.5px"><div class="line" style="width:471px"></div><div class="lab">THAN YOU</div></div>
+  <div class="row" style="top:814.8px"><div class="line" style="width:527px"></div><div class="lab">THINK</div></div>
+</section>
+</body>
+</html>

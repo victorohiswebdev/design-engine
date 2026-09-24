@@ -60,6 +60,9 @@ python3 scripts/vision_qa.py my-slide.html --brand livefree --strict
 
 # 8. With an API key, add an LLM second pair of eyes (Gemini/Claude/OpenAI/any OpenAI-compatible)
 GEMINI_API_KEY=... python3 scripts/vision_qa.py my-slide.html --brand livefree --vision
+
+# 9. Replicating an existing design? Add the fidelity gate against the original
+python3 scripts/fidelity_qa.py reference.png my-slide.png --tol 1.0
 ```
 
 ## Repository layout
@@ -68,7 +71,7 @@ GEMINI_API_KEY=... python3 scripts/vision_qa.py my-slide.html --brand livefree -
 design-engine/
 ├── docs/          # The rulebook — read this first (esp. formatting-standards.md, social.md)
 ├── templates/     # Scaffolds: deck / a4 / flyer / social / carousel + charts/ snippets
-├── scripts/       # generate.py + image.py + qa.py + vision_qa.py
+├── scripts/       # generate.py + image.py + qa.py + vision_qa.py + fidelity_qa.py
 ├── examples/      # Curated sample outputs (no client data)
 └── venv/          # Local Python env (gitignored)
 ```
@@ -87,6 +90,7 @@ design-engine/
 - `docs/charts.md` — dataviz kit: Okabe-Ito, direct labels, data-ink — bar, line, donut, table-as-visual (Phase 5).
 - `docs/qa.md` — geometric QA: overflow, clip, missing images, empty slides.
 - `docs/vision-qa.md` — perceptual QA: muddy gradients, brand drift, blur, crowding (Phase 4, heuristics + optional vision LLM).
+- `docs/fidelity-qa.md` — replica gate: does a rebuilt design match its reference? Element-by-element deltas.
 - `docs/pdf-pipeline.md` — how rendering works, font loading, pitfalls, troubleshooting.
 
 ## Scripts
@@ -105,6 +109,17 @@ python3 scripts/qa.py <your.html> --strict
 # Heuristics run with no API key; --vision adds an LLM second pair of eyes.
 python3 scripts/vision_qa.py <your.html> --brand livefree
 python3 scripts/vision_qa.py <your.html> --brand livefree --vision --out report.json
+
+# Fidelity gate: does a replica match the design it was copied from?
+# One image inspects a reference signature; two gate a replica against it.
+# Structural differences (a merged band, a missing glyph) fail outright.
+python3 scripts/fidelity_qa.py reference.png                    # inspect
+python3 scripts/fidelity_qa.py reference.png my-replica.png     # 0 = within tolerance
+python3 scripts/fidelity_qa.py reference.png my-replica.png --tol 0.5 --strict
+
+# Measure the largest empty band inside a render. Background and scan band are
+# detected from the image, so it works on any canvas.
+python3 scripts/measure_gap.py my-post.png
 ```
 
 See `python3 scripts/generate.py --help`.

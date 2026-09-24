@@ -7,6 +7,8 @@ venv/
 output/
 examples/*.pdf
 examples/*.png
+templates/**/*.png
+templates/**/*.pdf
 
 # Scratch / private working docs
 scratch/
