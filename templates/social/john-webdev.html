@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Social — Square 1080x1080 — Victor Ohis / Web</title>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @theme { --color-cream:#FFFBF0; --color-charcoal:#141410; --color-gold:#C9A86A; --color-red:#C1272D; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;0,900;1,800;1,900&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#f5f1e8}
+  .font-serif{font-family:'Playfair Display',serif}
+  .font-sans{font-family:'Montserrat',sans-serif}
+  /* SOCIAL SQUARE — 1080x1080 feed post */
+  section{width:1080px;height:1080px;position:relative;overflow:hidden;background:#FFFBF0}
+</style>
+</head>
+<body>
+<!--
+  Built from templates/social/square.html (Design Engine Phase 6).
+  Feed rules honoured: 60-30-10 color, 3-level hierarchy (hook/sub/CTA),
+  padding 24px, no ghost numbers, no glows, no invented metrics.
+  v2 fixes (rendered-design-qa loop): hook scaled to fill the frame,
+  first hook line lifted off the 0.42 contrast floor, supporting line
+  manually broken so no phrase orphans, header pill de-reddened so the
+  pop colour stops competing with the hook.
+-->
+<section class="flex flex-col">
+  <!-- 10% pop bar -->
+  <div class="absolute top-0 left-0 right-0 h-[6px]" style="background:#C1272D"></div>
+  <div class="absolute inset-[20px] top-[14px] border pointer-events-none" style="border-color:rgba(201,168,106,0.16)"></div>
+
+  <!-- HEADER -->
+  <div class="relative z-10 pt-[22px] px-[24px] flex items-center justify-between">
+    <span class="font-sans text-[18px] font-bold tracking-[0.32em] uppercase" style="color:#C1272D">VICTOR OHIS</span>
+    <span class="font-sans text-[16px] font-bold tracking-[0.22em] uppercase px-3 py-1.5 rounded-full" style="background:transparent; color:#141410; border:1px solid rgba(201,168,106,0.75)">WEB · DESIGN</span>
+  </div>
+  <div class="relative z-10 mx-[24px] mt-2 h-[1px]" style="background:linear-gradient(90deg, #C1272D 0%, rgba(201,168,106,0.35) 42%, transparent 100%)"></div>
+
+  <!-- HERO — type owns the frame -->
+  <div class="relative z-10 flex-1 flex flex-col items-center justify-center px-[24px] text-center">
+    <p class="font-sans text-[18px] font-extrabold tracking-[0.34em] uppercase" style="color:rgba(20,20,16,0.58)">Why it matters</p>
+    <h1 class="font-serif font-black leading-[0.86] mt-4" style="color:#141410; font-size:168px; letter-spacing:-0.055em">
+      <span class="block font-serif font-extrabold" style="font-size:46px; letter-spacing:0.10em; color:rgba(20,20,16,0.58); text-transform:uppercase">Your website is your</span>
+      <span class="block">BEST</span>
+      <span class="block font-serif font-black italic -mt-2" style="color:#C1272D; font-size:152px">salesperson.</span>
+    </h1>
+    <p class="font-sans mt-4 text-center" style="color:rgba(20,20,16,0.66); font-size:24px; line-height:1.42; font-weight:600">Answers in seconds. Works at 2am.<br>Never asks for a raise.<br>Never forgets to follow up.</p>
+    <div class="mt-4 h-[2px] w-[88px]" style="background:#C9A86A"></div>
+  </div>
+
+  <!-- FOOTER CTA -->
+  <div class="relative z-10 mx-[24px] mb-[24px] rounded-[1.4rem] px-6 py-4 flex items-center justify-between" style="background:#141410">
+    <div>
+      <p class="font-serif font-black leading-none" style="color:#FFFBF0; font-size:22px">Victor Ohis</p>
+      <p class="font-sans text-[15px] font-bold tracking-[0.18em] uppercase mt-1" style="color:rgba(201,168,106,0.85)">Web · Design · Build</p>
+    </div>
+    <div class="px-5 py-2.5 rounded-full font-sans text-[17px] font-extrabold" style="background:#C1272D; color:white">DM “SITE” →</div>
+  </div>
+  <div class="relative z-10 mx-[24px] pb-[18px] flex items-center justify-between">
+    <span class="font-sans text-[15px] font-semibold tracking-[0.18em] uppercase" style="color:rgba(20,20,16,0.45)">Nigeria · Open for work</span>
+    <span class="font-sans text-[15px] font-bold tracking-[0.20em] uppercase" style="color:rgba(193,39,45,0.85)">#WebDesign</span>
+  </div>
+</section>
+</body>
+</html>

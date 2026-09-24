@@ -63,6 +63,9 @@ GEMINI_API_KEY=... python3 scripts/vision_qa.py my-slide.html --brand livefree -
 
 # 9. Replicating an existing design? Add the fidelity gate against the original
 python3 scripts/fidelity_qa.py reference.png my-slide.png --tol 1.0
+
+# 10. Can't separate two overlapping elements, or hunting a faint overlay?
+python3 scripts/ascii_probe.py my-slide.png --box 350,1066,445,1140 --step 2
 ```
 
 ## Repository layout
@@ -71,7 +74,7 @@ python3 scripts/fidelity_qa.py reference.png my-slide.png --tol 1.0
 design-engine/
 ├── docs/          # The rulebook — read this first (esp. formatting-standards.md, social.md)
 ├── templates/     # Scaffolds: deck / a4 / flyer / social / carousel + charts/ snippets
-├── scripts/       # generate.py + image.py + qa.py + vision_qa.py + fidelity_qa.py
+├── scripts/       # generate.py + image.py + qa.py + vision_qa.py + fidelity_qa.py + ascii_probe.py
 ├── examples/      # Curated sample outputs (no client data)
 └── venv/          # Local Python env (gitignored)
 ```
@@ -91,6 +94,11 @@ design-engine/
 - `docs/qa.md` — geometric QA: overflow, clip, missing images, empty slides.
 - `docs/vision-qa.md` — perceptual QA: muddy gradients, brand drift, blur, crowding (Phase 4, heuristics + optional vision LLM).
 - `docs/fidelity-qa.md` — replica gate: does a rebuilt design match its reference? Element-by-element deltas.
+- `docs/pixel-inspection.md` — measuring a render precisely, and the questions a vision
+  model must not be asked: critique versus measurement, per-element masks, character maps,
+  residual profiles. **Read before trusting a critique over a number.**
+- `docs/social-formats.md` — canvas sizes and DPR, safe margins, the contrast floor on
+  dark canvases, what survives thumbnail scale, print settings.
 - `docs/pdf-pipeline.md` — how rendering works, font loading, pitfalls, troubleshooting.
 
 ## Scripts
@@ -120,6 +128,13 @@ python3 scripts/fidelity_qa.py reference.png my-replica.png --tol 0.5 --strict
 # Measure the largest empty band inside a render. Background and scan band are
 # detected from the image, so it works on any canvas.
 python3 scripts/measure_gap.py my-post.png
+
+# Read a region of a render as TEXT, when a colour threshold cannot separate the
+# elements. map = classified character grid (exact position/size/shading of an
+# icon on a slab on a veil); row/col = brightness minus a slow baseline, which
+# surfaces a faint overlay no absolute threshold can find.
+python3 scripts/ascii_probe.py my-post.png --box 350,1066,445,1140 --step 2
+python3 scripts/ascii_probe.py my-post.png --box 640,140,1080,1010 --mode row
 ```
 
 See `python3 scripts/generate.py --help`.
